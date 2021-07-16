@@ -107,7 +107,7 @@ i {
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    transform: translate(-15vw);
+    transform: translate(-18vw);
     transition: 0.2s ease-out;
     color: #f0f0f0;
     font-family: 'Open Sans', sans-serif;
