@@ -185,13 +185,14 @@ i {
     opacity: 0;
     visibility: hidden;
     user-select: none;
+    z-index: 2;
 }
 
 .menupfp::before {
     content: '';
     position: absolute;
     top: 0;
-    z-index: -1;
+    z-index: 1;
     right: 30px;
     width: 30px;
     height: 0;
