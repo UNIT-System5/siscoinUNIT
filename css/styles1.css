@@ -167,20 +167,6 @@ i {
     cursor: pointer;
 }
 
-.menupfp::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 30px;
-    width: 30px;
-    height: 0;
-    background-color: #1a1a1a;
-    transform: rotate(45deg);
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.2s ease-out;
-}
-
 .menupfp {
     height: 0;
     width: 10vw;
@@ -199,6 +185,22 @@ i {
     opacity: 0;
     visibility: hidden;
     user-select: none;
+    position: relative;
+}
+
+.menupfp::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    right: 30px;
+    width: 30px;
+    height: 0;
+    background-color: #1a1a1a;
+    transform: rotate(45deg);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s ease-out;
 }
 
 .menupfp a {
