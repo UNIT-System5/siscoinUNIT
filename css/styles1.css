@@ -111,7 +111,6 @@ i {
     transition: 0.2s ease-out;
     color: #f0f0f0;
     font-family: 'Open Sans', sans-serif;
-    box-shadow: 20px 0px 30px -15px #000000;
 }
 
 .menu.active .leftbar {
