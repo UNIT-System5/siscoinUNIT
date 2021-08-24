@@ -1,3 +1,135 @@
+<<<<<<< HEAD
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container1 {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.container1 img.bgimg {
+    position: absolute;
+    object-fit: cover;
+    width: 120%;
+    height: 120%;
+    z-index: -1;
+    filter: blur(15px);
+}
+
+.imglogin {
+    height: 75%;
+    width: 30%;
+}
+
+.imglogin img {
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 25px 0 0 25px;
+    filter: brightness(75%);
+}
+
+.login_card {
+    height: 75%;
+    width: 20%;
+    border-radius: 0 25px 25px 0;
+    background-color: #39374b;
+    display: flex;
+    flex-direction: column;
+}
+
+.section1 {
+    height: 35%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pfp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pfp img {
+    width: 50%;
+    height: 50%;
+}
+
+.section2 {
+    height: 65%;
+    width: 100%;
+}
+
+.section2 form {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 45px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.section2 form input {
+    border: none;
+    width: 70%;
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 15px;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.section2 form input:focus {
+    outline: none;
+}
+
+.section2 form button {
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1.2em;
+    padding: 0.8em 1em;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #605d80;
+    color: #f0f0f0;
+    cursor: pointer;
+}
+
+.section2 a {
+    text-decoration: none;
+    color: #948be9;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.8em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    transition: 0.2s ease-out;
+}
+
+.section2 a:hover {
+    color: #7871be;
+}
+
+=======
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
 
 * {
@@ -142,3 +274,4 @@
     color: #7871be;
 }
 
+>>>>>>> 981b7ba (Second Commit UNIT)

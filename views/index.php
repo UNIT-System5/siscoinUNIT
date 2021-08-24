@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="images/UNIT_Icon.png">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="views/images/UNIT_Icon.png">
+    <link rel="stylesheet" href="views/css/styles.css">
     <title>Control de Inventario</title>
 </head>
 <body>
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="logo">
-            <img class="logoimg" src="images/UNIT_Logo_Web.png">
+            <img class="logoimg" src="views/images/UNIT_Logo_Web.png">
         </div>
         <div class="nav">
             <span class="separator"></span>
@@ -55,9 +55,9 @@
                 <i class="fas fa-search" onclick="searchBar();"></i>
             </div>
             <div class="signin" onclick="ProfileClick();">
-                <img src="images/default-profile.png">
+                <img src="views/images/default-profile.png">
                 <div class="menupfp">
-                    <a href="login.html">
+                    <a href="views/login.html">
                         <h2>Sign In</h2>
                         <i class="fas fa-key"></i>
                     </a>
@@ -171,7 +171,7 @@
                         <td><i class="fas fa-cog"></i> Gian Luca Porto</td>
                         <td><i class="fas fa-times"></i> Fail</td>
                         <td><i class="fas fa-desktop"></i> Cougar Power Supply</td>
-                        <td><i class="far fa-user"></i> Néstor Piazza</td>
+                        <td><i class="far fa-user"></i> John Doe</td>
                     </tr>
                     <tr>
                         <td><i class="far fa-calendar-alt"></i> 27/07/2007</td>
@@ -185,7 +185,7 @@
                         <td><i class="fas fa-cog"></i> Romina Balbiani</td>
                         <td><i class="fas fa-dollar-sign"></i> Sell</td>
                         <td><i class="fas fa-network-wired"></i> UTP 5e Cable (40m)</td>
-                        <td><i class="far fa-user"></i> Ernesto Bona</td>
+                        <td><i class="far fa-user"></i> Ernesto False</td>
                     </tr>
                     <tr>
                         <td><i class="far fa-calendar-alt"></i> 10/05/2006</td>
@@ -232,6 +232,6 @@
         </div>
     </div>
     <script src="https://kit.fontawesome.com/84614effd5.js" crossorigin="anonymous" async></script>
-    <script src="js/script.js"></script>
+    <script src="views/js/script.js"></script>
 </body>
 </html>
