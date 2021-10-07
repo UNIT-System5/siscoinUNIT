@@ -1,0 +1,14 @@
+0 6 * * * /root/backup_sql.sh
+0 6 * * * /root/homebackup.sh
+0 6 * * * /root/backup_conf.sh
+0 19 * * * /root/backup_sql.sh
+0 19 * * * /root/homebackup.sh
+0 19 * * * /root/backup_conf.sh
+15 6 * * * /root/remote_backup.sh
+15 19 * * * /root/remote_backup.sh
+
+0 6 * 0 * /root/fullhome.sh
+0 6 * 0 * /root/fullconf.sh
+15 6 * 0 * /root/fullremote.sh
+
+
