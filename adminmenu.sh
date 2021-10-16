@@ -146,7 +146,7 @@ backup_conf() {
 restore_home() {
 	logname >> /root/logs/log.txt
     date >> /root/logs/log.txt
-    echo "Restauro los directorios home" >> /root/logs/log.txt
+    echo "Inicio la restauración de los directorios home" >> /root/logs/log.txt
     #echo "Salida del comando: " >> /root/logs/log.txt
 	/bin/bash /root/restore_home.sh 
 	#echo "" >> /root/logs/log.txt
@@ -156,7 +156,7 @@ restore_home() {
 restore_conf() {
 	logname >> /root/logs/log.txt
     date >> /root/logs/log.txt
-    echo "Restauro el directorio de configuracion" >> /root/logs/log.txt
+    echo "Inicio la restauración del directorio de configuracion" >> /root/logs/log.txt
     #echo "Salida del comando: " >> /root/logs/log.txt
 	/bin/bash /root/restore_conf.sh
 	#echo "" >> /root/logs/log.txt

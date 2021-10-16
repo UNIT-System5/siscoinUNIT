@@ -17,9 +17,11 @@ case $sel in
 
 	s)	
 		rsync -aAXHv /mnt/backup_device/home/* /home
+		echo "Se ha ejecutado la restauración" >> /root/logs/log.txt
 		;;
 	n)
 		echo "Sabia decision..."
+		echo "Se ha abortado la restauración" >> /root/logs/log.txt
 		;;
 	*)
 		echo "Solo hay dos opciones.

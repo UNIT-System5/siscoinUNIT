@@ -69,6 +69,7 @@ echo "Preparando phpMyAdmin..."
 
 # Creando el directorio para los backups...
 mkdir /mnt/backup_device
+mkdir /mnt/backup_device/full 
 
 # Creando el directorio para los logs de auditoria...
 mkdir /root/logs

@@ -34,6 +34,9 @@ sed -i "s|#LoadModule actions_module modules/mod_actions.so|LoadModule actions_m
 
 sed -i "/<IfModule unixd_module>/a LoadModule fcgid_module modules\/mod_fcgid.so" /etc/httpd/conf/httpd.conf
 
+# Evitamos que el usuario vea toda la root del servidor...
+sed -i "s|Options Indexes FollowSymLinks|Options FollowSymLinks|" /etc/httpd/conf/httpd.conf
+
 
 # Algunos includes...
 

@@ -3,7 +3,7 @@
 # Sintaxis cortesía de la wiki de Arch Linux
 # wiki.archlinux.org
 
-if ! rsync -aAXHv --update /etc /mnt/backup_device --log-file=/root/logs/log.txt;
+if ! rsync -aAXHv --update /etc /mnt/backup_device --log-file=/root/logs/rsynclog.txt;
     then
         echo "Ha ocurrido un error al hacer el backup de la configuración"
         echo "Ha ocurrido un error al hacer el backup de la configuración" >> /root/logs/rsynclog.txt 

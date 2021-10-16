@@ -12,6 +12,10 @@ sed -i "s|#LoadModule proxy_module modules/mod_proxy.so|LoadModule proxy_module 
 
 sed -i "s|#LoadModule proxy_fcgi_module modules/mod_proxy_fcgi.so|LoadModule proxy_fcgi_module modules/mod_proxy_fcgi.so|" /etc/httpd/conf/httpd.conf
 
+# Ya que estamos con sed, evitemos que el cliente simplemente vea todos los directorios en la root del servidor...
+
+sed -i "s|Options Indexes FollowSymLinks|Options FollowSymLinks|" /etc/httpd/conf/httpd.conf
+
 # Creamos un archivo de configuracion...
 echo '
 DirectoryIndex index.php index.html
