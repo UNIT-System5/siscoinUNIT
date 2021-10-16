@@ -18,10 +18,17 @@ nmcli con del "Wired connection 1"
 nmcli con del "Wired connection 2"
 
 # Agregamos la conexion con ip estatica
-nmcli connection add type ethernet con-name intranet ifname enp0s3 ip4 192.168.56.101 gw4 192.168.56.1
+nmcli connection add type ethernet con-name intranet ifname enp0s3 ip4 192.168.56.101/24 
 
-# Le asignamos un servidor dns
-nmcli con mod intranet ipv4.dns 192.168.56.1 ipv4.never-default yes
+# Le asignamos un servidor dns...
+nmcli con mod intranet ipv4.dns 192.168.56.1 
+
+# Le asignamos su gateway... Mepa que en realidad es inutil pq la siguiente opcion
+# lo deshabilita, pero x las dudas lo pongo
+#nmcli con mod intranet ipv4.gateway 192.168.56.1 
+
+# Que nunca sea la ruta por default, asi la nat nos da internet.
+ncmli con mod intranet ipv4.never-default yes
 
 # Agregamos la conexion DHCP
 nmcli connection add type ethernet con-name internet ifname enp0s8

@@ -11,9 +11,12 @@ read choice
 case $choice in
 	1)
 		clear
-		cat /etc/crontab
+		less /etc/crontab
 		;;
 	2)
 		nano /etc/crontab
+		;;
+	*)
+		echo "Dale, elegi bien..."
 		;;
 esac

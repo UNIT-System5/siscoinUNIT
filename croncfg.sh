@@ -31,8 +31,8 @@ echo "# Automatiza el backup de la base de datos...
 # Lo mismo, pero la 2da iteracion diaria.
 15 19 * * * root /root/remote_backup.sh
 # Hace un backup no incremental del directorio home.
-0 6 * 0 * root /root/fullhome.sh
+0 6 * * 0 root /root/fullhome.sh
 # Hace un backup no incremental de /etc.
-0 6 * 0 * root /root/fullconf.sh
+0 6 * * 0 root /root/fullconf.sh
 # Envia los backups no incrementales a la ubicacion de red.
-15 6 * 0 * root /root/fullremote.sh" > /etc/crontab
+15 6 * * 0 root /root/fullremote.sh" > /etc/crontab

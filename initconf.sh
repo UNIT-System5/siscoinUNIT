@@ -23,12 +23,14 @@ echo "Configurando cron..."
 
 # Realizando configuracion inicial de Apache
 echo "Instalando componentes necesarios para PHP"
-pacman -S --noconfirm mod_fcgid php-cgi
+#pacman -S --noconfirm mod_fcgid php-cgi
 
-mkdir /srv/http/fcgid-bin
-ln -s /usr/bin/php-cgi /srv/http/fcgid-bin/php-fcgid-wrapper
+#mkdir /srv/http/fcgid-bin
+#ln -s /usr/bin/php-cgi /srv/http/fcgid-bin/php-fcgid-wrapper
 
-/bin/bash /root/apachephp.sh
+#/bin/bash /root/apachephp.sh
+
+/bin/bash /root/apachephpalternate.sh
 
 # Algunas extensiones de PHP...
 echo "Habilitando extensiones de PHP..."
@@ -48,10 +50,12 @@ pacman -Syu --noconfirm expect
 
 /bin/expect /root/mysql_security.sh
 
-pacman -Rs --noconfirm expect
 
 # Destruyendo el script para que no quede la contra ahi...
 rm /root/mysql_security.sh
+
+# Haciendo el setup de la db...
+/bin/bash /root/db_setup.sh
 
 # Configurando cosas para phpMyAdmin...
 echo "Preparando phpMyAdmin..."
@@ -79,7 +83,8 @@ echo "Configuración lista. Procediendo a iniciar servicios..."
 systemctl enable --now NetworkManager
 systemctl enable --now cronie
 systemctl enable --now mariadb
-systemctl enable --now httpd
 systemctl enable --now sshd
+systemctl enable --now php-fpm 
+systemctl enable --now httpd
 
 reboot

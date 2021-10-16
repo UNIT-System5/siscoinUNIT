@@ -1,12 +1,36 @@
 #!/bin/bash
 
-user=director
-pswd=director1234
+echo "Ingrese el usuario de la base de datos"
+read user
+echo "Ingrese la contraseña del usuario"
+read -s pswd
 
-# Hermosa contraseña no profe :)
+
+if ! gunzip -f /mnt/backup_device/database.sql.gz;
+then 
+    echo "Ocurrio un error al descomprimir la base de datos. ¿Estaba exportada?" >> /root/logs/log.txt
+    echo "Ocurrio un error al descomprimir la base de datos. ¿Estaba exportada?"
+else 
+    if ! mysqladmin drop siscoin_unit -u $user -p$pswd;
+    then 
+        echo "Ocurrio un error al ingresar al usuario" >> /root/logs/log.txt
+        echo "Ocurrio un error al ingresar al usuario"
+    else 
+        if ! mysqladmin create siscoin_unit -u $user -p$pswd;
+        then
+            echo "Ocurrio un error al crear la base de datos" >> /root/logs/log.txt
+            echo "Ocurrio un error al crear la base de datos"
+        else
+            if ! mysql -u $user -p$pswd siscoin_unit < /mnt/backup_device/database.sql;
+            then
+                echo "Ocurrio un error al reimplementar la base de datos" >> /root/logs/log.txt
+                echo "Ocurrio un error al reimplementar la base de datos"
+            else
+                echo "Operación exitosa" >> /root/logs/log.txt
+                echo "Operación exitosa"
+            fi
+        fi
+    fi
+fi
 
 
-gunzip /mnt/backup_device/database.sql.gz
-mysqladmin drop siscoin_unit -u $user -p$pswd
-mysqladmin create siscoin_unit -u $user -p$pswd
-mysql siscoin_unit < /mnt/backup_device/database.sql

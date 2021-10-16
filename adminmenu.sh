@@ -17,70 +17,26 @@ backupdb() {
 	logname >> /root/logs/log.txt
 	date >> /root/logs/log.txt
 	echo "Manualmente realizo un respaldo de la base de datos" >> /root/logs/log.txt
+	echo "Resultado de la operación: " >> /root/logs/log.txt
+	/bin/bash /root/backup_sql.sh 2>> /root/logs/log.txt
 	echo "" >> /root/logs/log.txt
-	/bin/bash /root/backup_sql.sh
 }
 
 restoredb() {
 	logname >> /root/logs/log.txt
-        date >> /root/logs/log.txt
-        echo "Restauro base de datos desde respaldo" >> /root/logs/log.txt
-        echo "" >> /root/logs/log.txt
-	/bin/bash /root/restore_sql.sh
+    date >> /root/logs/log.txt
+    echo "Restauro base de datos desde respaldo" >> /root/logs/log.txt
+	echo "Resultado de la operación: " >> /root/logs/log.txt
+    /bin/bash /root/restore_sql.sh 2>> /root/logs/log.txt 
+	echo "" >> /root/logs/log.txt
 }
 
 cronctl() {
-	echo "Ingrese 1 para  habilitar Cron"
-	echo "Ingrese 2 para deshabilitar Cron"
-	echo "Ingrese 3 para reiniciar Cron"
-	read opt
-	case $opt in
-		1)
-			systemctl enable --now cronie.service
-			;;
-		2)
-			systemctl disable --now cronie.service
-			;;
-		3)
-			systemctl restart cronie.service
-			;;
-		*)
-			echo "Ingreso un valor no valido..."
-			;;
-	esac
+	/bin/bash /root/cronctl.sh
 }
 
 networkctl() {
-	echo "Ingrese 1 para reiniciar NetworkManager"
-	echo "Ingrese 2 para habilitar el firewall"
-	echo "Ingrese 3 para deshabilitar el firewall"
-	echo "Ingrese 4 para restablecer la configuración de red"
-	read $optn
-	case $optn in
-		1)
-			systemctl restart NetworkManager.service
-			;;
-		2)
-			ufw enable
-			;;
-		3)
-			ufw disable
-			;;
-
-		4)	
-			logname >> /root/logs/log.txt
-        		date >> /root/logs/log.txt
-        		echo "Ejecuto el script de configuracion inicial de red" >> /root/logs/log.txt
-        		echo "" >> /root/logs/log.txt
-        		bash /root/networkreset.sh
-			bash /root/networkconf.sh
-			reboot
-			;;
-		*)
-                        echo "Ingreso un valor no valido..."
-                        ;;
-	esac
-
+	/bin/bash /root/networkctl.sh 
 }
 
 addofficeuser() {
@@ -138,9 +94,9 @@ addunituser() {
 	echo "$useru:$pswdu" | chpasswd
 	sleep 1
 	logname >> /root/logs/log.txt
-        date >> /root/logs/log.txt
-        echo "Creo un usuario del grupo UNIT" >> /root/logs/log.txt
-        echo "" >> /root/logs/log.txt
+    date >> /root/logs/log.txt
+    echo "Creo un usuario del grupo UNIT" >> /root/logs/log.txt
+    echo "" >> /root/logs/log.txt
 	fi
 }
 
@@ -153,65 +109,89 @@ addgroup() {
 	else
 		groupadd "$ngroup"
 		logname >> /root/logs/log.txt
-                date >> /root/logs/log.txt
-                echo "Creo un grupo" >> /root/logs/log.txt
-                echo "" >> /root/logs/log.txt
+        date >> /root/logs/log.txt
+        echo "Creo un grupo" >> /root/logs/log.txt
+        echo "" >> /root/logs/log.txt
 	fi
 }
 
 homebackup() {
 	logname >> /root/logs/log.txt
-        date >> /root/logs/log.txt
-        echo "Realizo un backup manual de los directorios home" >> /root/logs/log.txt
-        echo "" >> /root/logs/log.txt
-	/bin/bash /root/homebackup.sh
+    date >> /root/logs/log.txt
+    echo "Realizo un backup manual de los directorios home" >> /root/logs/log.txt
+    echo "Resultado de la operación: " >> /root/logs/log.txt
+	/bin/bash /root/homebackup.sh 2>> /root/logs/log.txt
+	echo "" >> /root/logs/log.txt
 }
 
 remote_backup() {
 	logname >> /root/logs/log.txt
-        date >> /root/logs/log.txt
-        echo "Manualmente realizo un backup al servidor remoto" >> /root/logs/log.txt
-        echo "" >> /root/logs/log.txt
-	/bin/bash /root/remote_backup.sh
+    date >> /root/logs/log.txt
+    echo "Manualmente realizo un backup al servidor remoto" >> /root/logs/log.txt
+    echo "Resultado de la operación: " >> /root/logs/log.txt
+	/bin/bash /root/remote_backup.sh 2>> /root/logs/log.txt
+	echo "" >> /root/logs/log.txt
 }
 
 backup_conf() {
 	logname >> /root/logs/log.txt
-        date >> /root/logs/log.txt
-        echo "Realizo un backup manual del directorio de configuracion" >> /root/logs/log.txt
-        echo "" >> /root/logs/log.txt
-	/bin/bash /root/backup_conf.sh
+    date >> /root/logs/log.txt
+    echo "Realizo un backup manual del directorio de configuracion" >> /root/logs/log.txt
+    echo "Resultado de la operación: " >> /root/logs/log.txt
+	/bin/bash /root/backup_conf.sh 2>> /root/logs/log.txt
+	echo "" >> /root/logs/log.txt
 }
 
 
 restore_home() {
 	logname >> /root/logs/log.txt
-        date >> /root/logs/log.txt
-        echo "Restauro los directorios home" >> /root/logs/log.txt
-        echo "" >> /root/logs/log.txt
-	/bin/bash /root/restore_home.sh
+    date >> /root/logs/log.txt
+    echo "Restauro los directorios home" >> /root/logs/log.txt
+    #echo "Salida del comando: " >> /root/logs/log.txt
+	/bin/bash /root/restore_home.sh 
+	#echo "" >> /root/logs/log.txt
 }
 
 
 restore_conf() {
 	logname >> /root/logs/log.txt
-        date >> /root/logs/log.txt
-        echo "Restauro el directorio de configuracion" >> /root/logs/log.txt
-        echo "" >> /root/logs/log.txt
+    date >> /root/logs/log.txt
+    echo "Restauro el directorio de configuracion" >> /root/logs/log.txt
+    #echo "Salida del comando: " >> /root/logs/log.txt
 	/bin/bash /root/restore_conf.sh
+	#echo "" >> /root/logs/log.txt
 }
 
 restore_remote() {
 	logname >> /root/logs/log.txt
-        date >> /root/logs/log.txt
-        echo "Descargo backups del servidor remoto" >> /root/logs/log.txt
-        echo "" >> /root/logs/log.txt
-	/bin/bash /root/restore_remote.sh
+    date >> /root/logs/log.txt
+    echo "Descargo backups del servidor remoto" >> /root/logs/log.txt
+    echo "Resultado de la operación: " >> /root/logs/log.txt
+	/bin/bash /root/restore_remote.sh 2>> /root/logs/log.txt
+	echo "" >> /root/logs/log.txt
 }
 
 
 sysdlog() {
 	/bin/bash /root/systemdlogs.sh
+}
+
+unitlogs() {
+	echo "¿Qué logs desea ver?"
+	echo "1) Logs de operaciones y errores."
+	echo "2) Logs de transacciones efectuadas por rsync."
+	read logch
+	case $logch in
+		1)
+			less /root/logs/log.txt
+			;;
+		2)
+			less /root/logs/rsynclog.txt
+			;;
+		*)
+			echo "¿Es tan díficil elegir entre dos opciones?"
+			;;
+	esac 
 }
 
 clear
@@ -231,7 +211,8 @@ echo "12. Backup a servidor remoto."
 echo "13. Restaurar archivos directorio Home"
 echo "14. Restaurar archivos de configuración"
 echo "15. Recibir respaldos del servidor remoto"
-echo "16. Acceder a submenú logs"
+echo "16. Acceder a submenú logs systemd (Servicios/usuarios del sistema)"
+echo "17. Ver logs de auditoría y errores (Scripts de UNIT)"
 
 read choice
 
@@ -284,7 +265,7 @@ case $choice in
 
 	11)
 		clear
-		/bin/bash backup_conf.sh
+		backup_conf
 		;;
 
 
@@ -311,6 +292,11 @@ case $choice in
 	16)
 		clear
 		sysdlog
+		;;
+
+	17)
+		clear
+		unitlogs
 		;;
 	*)
                 echo "Ingreso un valor no valido..."

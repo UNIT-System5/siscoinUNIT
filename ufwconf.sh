@@ -1,10 +1,15 @@
 #!/bin/bash
 
 # Lo habilitamos con systemd...
-systemctl enable --now ufw
+# systemctl enable --now ufw
 
-# Lo configuramos...
+# Configuramos la politica por defecto
 ufw default deny
+
+# Permitimos trafico por la intranet...
+ufw allow from 192.168.56.0/24
+
+# Lo habilitamos...
 ufw enable
 
 

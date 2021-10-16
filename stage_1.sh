@@ -8,11 +8,11 @@ mkfs.ext4 /dev/sda1
 
 mount /dev/sda1 /mnt
 
-pacstrap /mnt base neovim nano apache networkmanager mariadb php fish htop linux linux-firmware man-db expect cronie grub phpmyadmin git sed ufw 
+pacstrap /mnt base neovim nano apache networkmanager mariadb php fish htop linux linux-firmware man-db expect cronie grub phpmyadmin git sed ufw openssh rsync 
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
-cp ~/siscoinUNIT/*.sh /mnt/root/
+cp ~/siscoinUNIT/* /mnt/root/
 
 arch-chroot /mnt
 
