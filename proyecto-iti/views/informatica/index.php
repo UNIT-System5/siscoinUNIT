@@ -15,12 +15,6 @@
     if (isset($_GET['users'])) {
         header('Location: users.php');
     }
-
-    $count = 0;
-
-    foreach ($listUsers as $key) {
-        $count++;
-    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -74,7 +68,7 @@
             <div class="data_employees">
                 <div class="card_content">
                     <div class="section1">
-                        <h1><?php echo $count; ?></h1>
+                        <h1></h1>
                         <span>Total employees</span>
                     </div>
                     <div class="section2 emp">
@@ -82,7 +76,7 @@
                     </div>
                 </div>
                 <div class="card_info emp">
-                    <a href="#">
+                    <a href="users.php">
                         More Info <i class="fas fa-angle-right"></i>
                     </a>
                 </div>
@@ -201,6 +195,7 @@
         </div>
     </div>
     <script src="https://kit.fontawesome.com/84614effd5.js" crossorigin="anonymous" async></script>
-    <script src="../js/script.js"></script>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script type="module" src="../js/main.js"></script>
 </body>
 </html>

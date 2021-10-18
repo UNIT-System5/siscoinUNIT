@@ -13,13 +13,18 @@
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #FFF;
+  background-color: transparent;
+  background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #8080ff;
   border-radius: 25px;
   background-clip: padding-box;
+}
+
+a {
+  outline: none;
 }
 
 .header {
@@ -31,6 +36,292 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.videoContainer {
+  position: absolute;
+  height: 94vh;
+  width: 100%;
+  z-index: 8;
+  bottom: 0;
+  background-color: #1a1a1acc;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+}
+
+.videoContainer video {
+  height: 90%;
+  width: auto;
+  border-radius: 25px;
+}
+
+.editProfile {
+  position: absolute;
+  width: 100%;
+  height: 94vh;
+  z-index: 8;
+  bottom: 0;
+  background-color: #1a1a1acc;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+}
+
+.editProfile form {
+  width: 30%;
+  height: 50%;
+  background-color: #f0f0f0;
+  border-radius: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: 'Open Sans', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+.editProfile form .fa-times {
+  top: 0.5em;
+  right: 0.8em;
+  position: absolute;
+  font-size: 2em;
+  z-index: 11;
+  color: #f0f0f0;
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
+  transition: -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+.editProfile form .fa-times:hover {
+  cursor: pointer;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.editProfile form .imgSpace {
+  width: 100%;
+  height: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  position: relative;
+}
+
+.editProfile form .imgSpace .imgBg {
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(45deg, #7f00ff, #e100ff);
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.editProfile form .imgSpace .imgContainer {
+  height: 6em;
+  width: 6em;
+  border-radius: 50%;
+  background-color: #391661;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.editProfile form .imgSpace .imgContainer img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.editProfile form .imgSpace .chFile {
+  border: none;
+  outline: none;
+  width: 3em;
+  height: 3em;
+  background-color: #7f00ff;
+  color: #f0f0f0;
+  border-radius: 50%;
+  position: absolute;
+  -webkit-transform: translate(2.5em, 0.7em);
+          transform: translate(2.5em, 0.7em);
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+  z-index: 11;
+}
+
+.editProfile form .imgSpace .chFile:hover {
+  cursor: pointer;
+  background-color: #570ea0;
+}
+
+@-webkit-keyframes buttonConfirm {
+  to {
+    -webkit-transform: translate(-2.5em, 0.7em);
+            transform: translate(-2.5em, 0.7em);
+  }
+}
+
+@keyframes buttonConfirm {
+  to {
+    -webkit-transform: translate(-2.5em, 0.7em);
+            transform: translate(-2.5em, 0.7em);
+  }
+}
+
+.editProfile form .imgSpace .confirm {
+  border: none;
+  outline: none;
+  width: 3em;
+  height: 3em;
+  background-color: #41d641;
+  color: #f0f0f0;
+  border-radius: 50%;
+  position: absolute;
+  -webkit-transform: translate(2.5em, 0.7em);
+          transform: translate(2.5em, 0.7em);
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+  -webkit-animation: buttonConfirm 0.3s ease-out forwards;
+          animation: buttonConfirm 0.3s ease-out forwards;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+  z-index: 10;
+}
+
+.editProfile form .imgSpace .confirm:hover {
+  cursor: pointer;
+  background-color: #2d992d;
+}
+
+.editProfile form input {
+  display: none;
+}
+
+.editProfile form .dName {
+  width: 100%;
+  height: 4em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.editProfile form .otherStuff {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 30%;
+  width: 100%;
+}
+
+.editProfile form .otherStuff .dGroup {
+  width: 45%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5em;
+}
+
+.editProfile form .otherStuff .dGroup .groupsI {
+  height: 2.5em;
+  width: 2.5em;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #7f00ff, #e100ff);
+  color: #f0f0f0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.5em;
+}
+
+.editProfile form .otherStuff .dLugar {
+  width: 45%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5em;
+}
+
+.editProfile form .otherStuff .dLugar .officeI {
+  height: 2.5em;
+  width: 2.5em;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #7f00ff, #e100ff);
+  color: #f0f0f0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.5em;
 }
 
 .nav {
@@ -111,6 +402,7 @@
 }
 
 .searchbar i:hover {
+  cursor: pointer;
   color: #8080ff;
 }
 
@@ -126,7 +418,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  z-index: 10;
+  z-index: 11;
 }
 
 .menu i {
@@ -137,10 +429,11 @@
 }
 
 .menu i:hover {
+  cursor: pointer;
   color: #8080ff;
 }
 
-.menu.active .leftbar {
+.menu .fa-bars:focus-within + .leftbar {
   -webkit-transform: translate(0vw);
           transform: translate(0vw);
 }
@@ -160,12 +453,17 @@
 .logoimg {
   height: 4.7vh;
   width: auto;
-  z-index: 10;
+  z-index: 11;
+}
+
+.logoimg:hover {
+  cursor: pointer;
 }
 
 .leftbar {
   height: 100vh;
-  width: 13vw;
+  width: 12em;
+  outline: none;
   padding-top: 6vh;
   position: absolute;
   z-index: -1;
@@ -185,8 +483,8 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-transform: translate(-18vw);
-          transform: translate(-18vw);
+  -webkit-transform: translate(-18em);
+          transform: translate(-18em);
   -webkit-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
   color: #f0f0f0;
@@ -247,8 +545,8 @@
 }
 
 .signin {
-  width: auto;
-  height: 60%;
+  width: 1.5em;
+  height: 1.5em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -258,23 +556,29 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  outline: none;
+  border: none;
 }
 
 .signin img {
-  width: auto;
+  width: 100%;
   height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   background-color: #FFF;
+  outline: none;
+  border: 1px solid #eaeaea;
   border-radius: 25px;
   cursor: pointer;
 }
 
-.signin.active .menupfp {
-  height: 10vh;
+.signin:focus-within .menupfp {
+  height: 12vh;
   opacity: 1;
   visibility: visible;
 }
 
-.signin.active .menupfp::before {
+.signin:focus-within .menupfp::before {
   height: 30px;
   opacity: 1;
   visibility: visible;
@@ -284,8 +588,10 @@
   height: 0;
   width: 10vw;
   background-color: #322e64;
+  -webkit-box-shadow: -5px 5px 20px 0 #1a1a1a93;
+          box-shadow: -5px 5px 20px 0 #1a1a1a93;
   right: 0;
-  top: 1vh;
+  top: 1.5vh;
   margin-right: 10px;
   margin-top: 6vh;
   position: absolute;
@@ -298,33 +604,42 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   border-radius: 15px;
   font-family: 'Open Sans', sans-serif;
   -webkit-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
   opacity: 0;
   visibility: hidden;
+  outline: none;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  z-index: 1;
+  z-index: 10;
 }
 
 .menupfp a {
+  width: 100%;
+  height: 50%;
   text-decoration: none;
   color: #f0f0f0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 0.8em;
-  gap: 10px;
+  font-size: 0.6em;
+  padding-left: 2em;
+  border-radius: 0 0 15px 15px;
+  gap: 0.5em;
   -webkit-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
 }
@@ -335,12 +650,30 @@
   transition: 0.2s ease-out;
 }
 
+.menupfp a h2 {
+  font-weight: 600;
+}
+
+.menupfp a .one {
+  margin-top: 0.5em;
+}
+
+.menupfp a .two {
+  margin-bottom: 0.5em;
+}
+
 .menupfp a:hover {
+  background-color: #110F30;
   color: #8080ff;
+  cursor: pointer;
 }
 
 .menupfp a:hover i {
   color: #8080ff;
+}
+
+.menupfp .editP {
+  border-radius: 15px 15px 0 0;
 }
 
 .menupfp::before {
@@ -363,7 +696,7 @@
 .container1 {
   height: 94vh;
   width: 100%;
-  background-color: #eeeeee;
+  background-color: #f0f0f0;
   padding: 2vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -626,6 +959,10 @@ table tr th {
   text-align: left;
   height: 6vh;
   margin-bottom: 3em;
+}
+
+table tr th .fa-quote-right {
+  font-size: 0.8em;
 }
 
 table tr td {

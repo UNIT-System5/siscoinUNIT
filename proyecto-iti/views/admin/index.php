@@ -9,17 +9,11 @@
     }
 
     if (isset($_GET['equip'])) {
-        header('Location: equipment.php');
+        header('Location: equip.php');
     }
 
     if (isset($_GET['users'])) {
         header('Location: users.php');
-    }
-
-    $count = 0;
-
-    foreach ($listUsers as $key) {
-        $count++;
     }
 ?>
 <!DOCTYPE html>
@@ -66,7 +60,7 @@
                     </div>
                 </div>
                 <div class="card_info equip">
-                    <a href="#">
+                    <a href="?equip">
                         More Info <i class="fas fa-angle-right"></i>
                     </a>
                 </div>
@@ -74,7 +68,7 @@
             <div class="data_employees">
                 <div class="card_content">
                     <div class="section1">
-                        <h1><?php echo $count; ?></h1>
+                        <h1></h1>
                         <span>Total employees</span>
                     </div>
                     <div class="section2 emp">
@@ -82,7 +76,7 @@
                     </div>
                 </div>
                 <div class="card_info emp">
-                    <a href="#">
+                    <a href="?users">
                         More Info <i class="fas fa-angle-right"></i>
                     </a>
                 </div>
@@ -110,86 +104,97 @@
         </div>
         <div class="history">
             <div class="title2">
-                <h2>Movement History</h2>
+                <h2>Requests History</h2>
             </div>
             <div class="history_tab">
                 <table>
                     <tr class="top-tr">
-                        <th>Date</th>
-                        <th>User</th>
-                        <th>Action</th>
-                        <th>Product</th>
-                        <th>Client</th>
+                        <th><i class="fas fa-hashtag"></i> ID</th>
+                        <th><i class="fas fa-quote-right"></i> Título</th>
+                        <th><i class="fas fa-align-left"></i> Descripción</th>
+                        <th><i class="fas fa-building"></i> Oficina</th>
+                        <th><i class="far fa-calendar"></i> Fecha Inicial</th>
+                        <th><i class="far fa-calendar-alt"></i> Fecha Final</th>
                     </tr>
                     <tr>
-                        <td><i class="far fa-calendar-alt"></i> 22/07/2019</td>
-                        <td><i class="fas fa-cog"></i> Mauricio Villarino</td>
-                        <td><i class="fas fa-wrench"></i> Install</td>
-                        <td><i class="fas fa-desktop"></i> RAM 2x16 DDR4 Crucial</td>
-                        <td><i class="far fa-user"></i> Mónica González</td>
+                        <td>1</td>
+                        <td>50 Teclados</td>
+                        <td>Lorem ipsum dolor sit amet consectetur.</td>
+                        <td>Oficina 5</td>
+                        <td>10/08/2020</td>
+                        <td>11/10/2020</td>
                     </tr>
                     <tr>
-                        <td><i class="far fa-calendar-alt"></i> 15/11/2014</td>
-                        <td><i class="fas fa-cog"></i> Romina Balbiani</td>
-                        <td><i class="fas fa-times"></i> Fail</td>
-                        <td><i class="fas fa-desktop"></i> Mouse & Keyboard Genius</td>
-                        <td><i class="far fa-user"></i> Lucius Malfoy</td>
+                        <td>2</td>
+                        <td>50 Teclados</td>
+                        <td>Lorem ipsum dolor sit amet consectetur.</td>
+                        <td>Oficina 5</td>
+                        <td>10/08/2020</td>
+                        <td>11/10/2020</td>
                     </tr>
                     <tr>
-                        <td><i class="far fa-calendar-alt"></i> 03/09/2010</td>
-                        <td><i class="fas fa-cog"></i> Gian Luca Porto</td>
-                        <td><i class="fas fa-times"></i> Fail</td>
-                        <td><i class="fas fa-desktop"></i> Cougar Power Supply</td>
-                        <td><i class="far fa-user"></i> John Doe</td>
+                        <td>3</td>
+                        <td>50 Teclados</td>
+                        <td>Lorem ipsum dolor sit amet consectetur.</td>
+                        <td>Oficina 5</td>
+                        <td>10/08/2020</td>
+                        <td>11/10/2020</td>
                     </tr>
                     <tr>
-                        <td><i class="far fa-calendar-alt"></i> 27/07/2007</td>
-                        <td><i class="fas fa-cog"></i> Gian Luca Porto</td>
-                        <td><i class="fas fa-dollar-sign"></i> Sell</td>
-                        <td><i class="fas fa-desktop"></i> RedDragon Power Supply</td>
-                        <td><i class="far fa-user"></i> Lautaro Hinojosa</td>
+                        <td>4</td>
+                        <td>50 Teclados</td>
+                        <td>Lorem ipsum dolor sit amet consectetur.</td>
+                        <td>Oficina 5</td>
+                        <td>10/08/2020</td>
+                        <td>11/10/2020</td>
                     </tr>
                     <tr>
-                        <td><i class="far fa-calendar-alt"></i> 26/07/2007</td>
-                        <td><i class="fas fa-cog"></i> Romina Balbiani</td>
-                        <td><i class="fas fa-dollar-sign"></i> Sell</td>
-                        <td><i class="fas fa-network-wired"></i> UTP 5e Cable (40m)</td>
-                        <td><i class="far fa-user"></i> Ernesto False</td>
+                        <td>5</td>
+                        <td>50 Teclados</td>
+                        <td>Lorem ipsum dolor sit amet consectetur.</td>
+                        <td>Oficina 5</td>
+                        <td>10/08/2020</td>
+                        <td>11/10/2020</td>
                     </tr>
                     <tr>
-                        <td><i class="far fa-calendar-alt"></i> 10/05/2006</td>
-                        <td><i class="fas fa-cog"></i> Mauricio Villarino</td>
-                        <td><i class="fas fa-dollar-sign"></i> Sell</td>
-                        <td><i class="fas fa-laptop"></i> Laptop HP Celeron</td>
-                        <td><i class="far fa-user"></i> Camilo González</td>
+                        <td>6</td>
+                        <td>50 Teclados</td>
+                        <td>Lorem ipsum dolor sit amet consectetur.</td>
+                        <td>Oficina 5</td>
+                        <td>10/08/2020</td>
+                        <td>11/10/2020</td>
                     </tr>
                     <tr>
-                        <td><i class="far fa-calendar-alt"></i> 30/03/2005</td>
-                        <td><i class="fas fa-cog"></i> Mauricio Villarino</td>
-                        <td><i class="fas fa-dollar-sign"></i> Sell</td>
-                        <td><i class="fab fa-playstation"></i> PlayStation 4, 1TB</td>
-                        <td><i class="far fa-user"></i> Gian Luca Porto</td>
+                        <td>7</td>
+                        <td>50 Teclados</td>
+                        <td>Lorem ipsum dolor sit amet consectetur.</td>
+                        <td>Oficina 5</td>
+                        <td>10/08/2020</td>
+                        <td>11/10/2020</td>
                     </tr>
                     <tr>
-                        <td><i class="far fa-calendar-alt"></i> 30/03/2005</td>
-                        <td><i class="fas fa-cog"></i> Mauricio Villarino</td>
-                        <td><i class="fas fa-dollar-sign"></i> Sell</td>
-                        <td><i class="fab fa-playstation"></i> PlayStation 4, 1TB</td>
-                        <td><i class="far fa-user"></i> Gian Luca Porto</td>
+                        <td>8</td>
+                        <td>50 Teclados</td>
+                        <td>Lorem ipsum dolor sit amet consectetur.</td>
+                        <td>Oficina 5</td>
+                        <td>10/08/2020</td>
+                        <td>11/10/2020</td>
                     </tr>
                     <tr>
-                        <td><i class="far fa-calendar-alt"></i> 30/03/2005</td>
-                        <td><i class="fas fa-cog"></i> Mauricio Villarino</td>
-                        <td><i class="fas fa-dollar-sign"></i> Sell</td>
-                        <td><i class="fab fa-playstation"></i> PlayStation 4, 1TB</td>
-                        <td><i class="far fa-user"></i> Gian Luca Porto</td>
+                        <td>9</td>
+                        <td>50 Teclados</td>
+                        <td>Lorem ipsum dolor sit amet consectetur.</td>
+                        <td>Oficina 5</td>
+                        <td>10/08/2020</td>
+                        <td>11/10/2020</td>
                     </tr>
                     <tr>
-                        <td><i class="far fa-calendar-alt"></i> 30/03/2005</td>
-                        <td><i class="fas fa-cog"></i> Mauricio Villarino</td>
-                        <td><i class="fas fa-dollar-sign"></i> Sell</td>
-                        <td><i class="fab fa-playstation"></i> PlayStation 4, 1TB</td>
-                        <td><i class="far fa-user"></i> Gian Luca Porto</td>
+                        <td>10</td>
+                        <td>50 Teclados</td>
+                        <td>Lorem ipsum dolor sit amet consectetur.</td>
+                        <td>Oficina 5</td>
+                        <td>10/08/2020</td>
+                        <td>11/10/2020</td>
                     </tr>
                 </table>
                 <div class="history_full">
@@ -201,6 +206,7 @@
         </div>
     </div>
     <script src="https://kit.fontawesome.com/84614effd5.js" crossorigin="anonymous" async></script>
-    <script src="../js/script.js"></script>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script type="module" src="../js/main.js"></script>
 </body>
 </html>

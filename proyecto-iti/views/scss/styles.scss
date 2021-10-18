@@ -4,7 +4,7 @@
 .container1 {
     height: 94vh;
     width: 100%;
-    background-color: #eeeeee;
+    background-color: #f0f0f0;
     padding: 2vh;
     display: flex;
     flex-direction: column;
@@ -209,6 +209,10 @@ table {
             text-align: left;
             height: 6vh;
             margin-bottom: 3em;
+
+            .fa-quote-right {
+                font-size: 0.8em;
+            }
         }
 
         td {

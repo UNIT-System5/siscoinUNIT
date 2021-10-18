@@ -17,6 +17,7 @@
 <body>
     <?php include('../extras/header_admin.html'); ?>
     <script src="https://kit.fontawesome.com/84614effd5.js" crossorigin="anonymous" async></script>
-    <script src="../js/script.js"></script>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script type="module" src="../js/main.js"></script>
 </body>
 </html>

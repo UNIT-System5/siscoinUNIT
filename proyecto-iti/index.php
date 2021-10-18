@@ -45,6 +45,10 @@
 </head>
 <body>
     <div class="container1">
+        <div class="errM" tabindex="0">
+            <i class="fas fa-times"></i>
+            <h2>Your e-mail or password is incorrect</h2>
+        </div>
         <img src="views/images/it_login.webp" class="bgimg">
         <div class="imglogin">
             <img src="views/images/it_login.webp">
@@ -53,26 +57,27 @@
             <div class="section1">
                 <div class="pfp">
                     <img src="views/images/Siscoin_Logo_Compact.svg">
-                </div>
+                </div> 
             </div>
             <div class="section2">
-                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-                    <input required name="mail" type="email" placeholder="E-Mail" maxlength="35">
+                <form action="init.php" method="POST">
+                    <input required name="mail" class="mail" type="email" placeholder="E-Mail" maxlength="35">
                     <div class="input_pass">
-                        <input required name="pass" type="password" placeholder="Password" class="password" maxlength="24">
+                        <input required name="pass" type="password" placeholder="Password"
+                        class="password" maxlength="24">
                         <input type="hidden" name="key" value="<?php echo md5('login' . date('H:i')); ?>">
-                        <button type="button" class="showPass" id="idk" onclick="viewPass();">
-                            <i class="fas fa-eye-slash" id="uwu"></i>
+                        <button type="button" class="showPass" id="idk">
+                            <i class="fas fa-eye-slash" id="iconEye"></i>
                         </button>
                     </div>
                     <button type="submit" name="login">Sign In <i class="fas fa-lock"></i></button>
                 </form>
-                <a href="#">Forgot Password?</a>
             </div>
         </div>
     </div>
+    <script src="views/js/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/84614effd5.js" crossorigin="anonymous"></script>
-    <script src="views/js/script.js"></script>
+    <script src="views/js/login.js"></script>
     <?php if (isset($_GET['loginFailed'])) { ?>
         <script>
             alert("Correo o contraseña incorrectos");
