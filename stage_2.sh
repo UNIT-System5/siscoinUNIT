@@ -28,6 +28,8 @@ echo "
 @reboot root /bin/bash /root/initconf.sh
 " > /etc/crontab  
 
+systemctl enable cronie
+
 grub-install --target=i386-pc /dev/sda
 
 grub-mkconfig -o /boot/grub/grub.cfg
