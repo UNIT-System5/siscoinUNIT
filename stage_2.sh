@@ -24,6 +24,10 @@ systemctl enable NetworkManager
 echo "root:20092009" | chpasswd
 sleep 1
 
+echo "
+@reboot root /bin/bash /root/initconf.sh
+" > /etc/crontab  
+
 grub-install --target=i386-pc /dev/sda
 
 grub-mkconfig -o /boot/grub/grub.cfg
