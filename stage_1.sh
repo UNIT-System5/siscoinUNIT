@@ -14,6 +14,6 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 cp ~/siscoinUNIT/* /mnt/root/
 
-arch-chroot /mnt
+arch-chroot /mnt bash /root/stage_2.sh; reboot
 
-reboot
+

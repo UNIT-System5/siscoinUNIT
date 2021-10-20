@@ -77,6 +77,20 @@ mkdir /root/logs
 # Configurando aliases...
 /bin/bash /root/aliases.sh
 
+# Deshabilitando la autenticación por sockets de Unix en mariadb...
+# Necesario para que no se pueda entrar como root sin contraseña,
+# ya que el menu usa sudo.
+echo "
+[mariadb]
+unix_socket=OFF
+" >> /etc/my.cnf
+
+
+# Haciendo el deploy de la página...
+mkdir /root/site 
+git clone -b main https://github.com/UNIT-System5/siscoinUNIT.git /root/site
+cp -r /root/site/proyecto-iti/* /srv/http/
+
 echo "Configuración lista. Procediendo a iniciar servicios..."
 
 # Asegurandonos de que estan habilitados servicios importantes...
