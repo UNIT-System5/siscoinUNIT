@@ -2,7 +2,7 @@ CREATE DATABASE siscoin_unit;
 USE siscoin_unit;
 
 CREATE TABLE proveedor (
-    id_prov int(2) PRIMARY KEY AUTO_INCREMENT,
+    id_prov int(4) PRIMARY KEY AUTO_INCREMENT,
     nom_prov varchar(20) CHARSET utf8 NOT NULL,
     dir_prov varchar(40) NOT NULL,
     tel_prov int(9) NOT NULL
@@ -10,16 +10,14 @@ CREATE TABLE proveedor (
 
 CREATE TABLE tipo_equipamiento (
     id_tipo int(2) PRIMARY KEY AUTO_INCREMENT,
-    nom_tipo varchar(20) CHARSET utf8 NOT NULL,
-    stock int(5) NOT NULL,
-    fk_prov int(2) NOT NULL,
-    FOREIGN KEY(fk_prov) REFERENCES proveedor(id_prov)
+    nom_tipo varchar(40) CHARSET utf8 NOT NULL,
+    prestock int(5) NOT NULL
 ) ENGINE=INNODB;
 
 CREATE TABLE provee (
     fecha_compra date NOT NULL,
     tipo_compra varchar(20) NOT NULL,
-    fk_prov int(2) NOT NULL,
+    fk_prov int(4) NOT NULL,
     fk_tipo int(2) NOT NULL,
     PRIMARY KEY(fecha_compra, fk_tipo, fk_prov),
     FOREIGN KEY(fk_prov) REFERENCES proveedor(id_prov),
@@ -28,23 +26,24 @@ CREATE TABLE provee (
 
 CREATE TABLE estado (
     id_estado int(2) PRIMARY KEY AUTO_INCREMENT,
-    nombre_estado varchar(20) CHARSET utf8 NOT NULL,
-    estado_sucesor varchar(40) CHARSET utf8 NOT NULL
+    nombre_estado varchar(20) CHARSET utf8 NOT NULL
 ) ENGINE=INNODB;
 
 CREATE TABLE equipamiento (
-    id_equip int(2) PRIMARY KEY AUTO_INCREMENT,
+    id_equip int PRIMARY KEY AUTO_INCREMENT,
     fecha_adq date NOT NULL,
     garantia int(2),
     desc_equip varchar(40) CHARSET utf8 NOT NULL,
     marca_equip varchar(20) CHARSET utf8 NOT NULL,
     tipo varchar(20) CHARSET utf8 NOT NULL,
-    lugar_equip varchar(20) CHARSET utf8 NOT NULL,
+    lugar_equip varchar(20) CHARSET utf8,
     estado_equip varchar(20) CHARSET utf8 NOT NULL,
     fk_estado int(2) NOT NULL,
     fk_tipo int(2) NOT NULL,
+    fk_prov int(4),
     FOREIGN KEY(fk_estado) REFERENCES estado(id_estado),
-    FOREIGN KEY(fk_tipo) REFERENCES tipo_equipamiento(id_tipo)
+    FOREIGN KEY(fk_tipo) REFERENCES tipo_equipamiento(id_tipo),
+    FOREIGN KEY(fk_prov) REFERENCES proveedor(id_prov)
 ) ENGINE=INNODB;
 
 CREATE TABLE est_sucesor (
@@ -71,24 +70,32 @@ CREATE TABLE equip_estado (
     FOREIGN KEY(fk_equip) REFERENCES equipamiento(id_equip)
 ) ENGINE=INNODB;
 
+CREATE TABLE grupo (
+    id_grupo int(2) PRIMARY KEY AUTO_INCREMENT,
+    nom_grupo varchar(20) CHARSET utf8 NOT NULL
+) ENGINE=INNODB;
+
 CREATE TABLE departamento (
     id_dep int(2) PRIMARY KEY AUTO_INCREMENT,
     nom_dep varchar(20) NOT NULL
 ) ENGINE=INNODB;
 
 CREATE TABLE oficina (
-    id_lugar int(2) PRIMARY KEY AUTO_INCREMENT,
+    id_lugar int(7) PRIMARY KEY AUTO_INCREMENT,
     desc_lugar varchar(20) CHARSET utf8 NOT NULL,
+    grupo_lugar varchar(20) CHARSET utf8 NOT NULL,
     dir_lugar varchar(40) CHARSET utf8 NOT NULL,
     depart_lugar varchar(40) CHARSET utf8 NOT NULL,
     ciudad_lugar varchar(40) CHARSET utf8 NOT NULL,
     tel_lugar int(9) NOT NULL,
     fk_dep int(2) NOT NULL,
-    FOREIGN KEY(fk_dep) REFERENCES departamento(id_dep)
+    fk_grupo int(2) NOT NULL,
+    FOREIGN KEY(fk_dep) REFERENCES departamento(id_dep),
+    FOREIGN KEY(fk_grupo) REFERENCES grupo(id_grupo)
 ) ENGINE=INNODB;
 
 CREATE TABLE instala_cambia (
-    id_inst_cambio int(2) PRIMARY KEY AUTO_INCREMENT,
+    id_inst_cambio int PRIMARY KEY AUTO_INCREMENT,
     tipo_accion varchar(40) CHARSET utf8 NOT NULL,
     desc_inst_cambio varchar(40) CHARSET utf8,
     fecha_inst_cambio date NOT NULL,
@@ -99,8 +106,9 @@ CREATE TABLE instala_cambia (
 ) ENGINE=INNODB;
 
 CREATE TABLE reporta_fallo (
-    id_fallo  int(2) PRIMARY KEY AUTO_INCREMENT,
-    fecha_fallo date NOT NULL,
+    id_fallo  int PRIMARY KEY AUTO_INCREMENT,
+    fecha_ini_fallo date NOT NULL,
+    fecha_fin_fallo date,
     tipo_fallo varchar(20) CHARSET utf8 NOT NULL,
     estado_fallo varchar(20) CHARSET utf8 NOT NULL,
     fk_equip int(2) NOT NULL,
@@ -110,28 +118,25 @@ CREATE TABLE reporta_fallo (
 ) ENGINE=INNODB;
 
 CREATE TABLE realiza_soli (
-    id_soli int(2) PRIMARY KEY AUTO_INCREMENT,
-    tipo_soli varchar(20) CHARSET utf8 NOT NULL,
-    desc_soli varchar(40) CHARSET utf8 NOT NULL,
+    id_soli int PRIMARY KEY AUTO_INCREMENT,
+    tipo_soli varchar(30) CHARSET utf8 NOT NULL,
+    desc_soli varchar(180) CHARSET utf8 NOT NULL,
     estado_soli varchar(20) CHARSET utf8 NOT NULL,
-    fecha_soli date NOT NULL,
+    fecha_ini_soli date NOT NULL,
+    fecha_fin_soli date,
     fk_tipo int(2) NOT NULL,
     fk_ofic int(2) NOT NULL,
     FOREIGN KEY(fk_tipo) REFERENCES tipo_equipamiento(id_tipo),
     FOREIGN KEY(fk_ofic) REFERENCES oficina(id_lugar)
 ) ENGINE=INNODB;
 
-CREATE TABLE grupo (
-    id_grupo int(2) PRIMARY KEY AUTO_INCREMENT,
-    nom_grupo varchar(20) CHARSET utf8 NOT NULL
-) ENGINE=INNODB;
-
 CREATE TABLE usuario (
-    id_user int(4) PRIMARY KEY AUTO_INCREMENT,
+    id_user int(7) PRIMARY KEY AUTO_INCREMENT,
     grupo_user varchar(20) CHARSET utf8 NOT NULL,
     mail_user varchar(320) NOT NULL UNIQUE,
     pass_user char(60) NOT NULL,
     nom_comp_user varchar(60) CHARSET utf8 NOT NULL,
+    pic_user varchar(69) CHARSET utf8,
     fk_ofic int(2) NOT NULL,
     fk_grupo int(2) NOT NULL,
     FOREIGN KEY(fk_ofic) REFERENCES oficina(id_lugar),
@@ -140,8 +145,8 @@ CREATE TABLE usuario (
 
 CREATE TABLE asign_usuario (
     fecha_asign date NOT NULL,
-    fk_user int(4) NOT NULL,
-    fk_ofic int(2) NOT NULL,
+    fk_user int(7) NOT NULL,
+    fk_ofic int(7) NOT NULL,
     FOREIGN KEY(fk_user) REFERENCES usuario(id_user),
     FOREIGN KEY(fk_ofic) REFERENCES oficina(id_lugar)
 ) ENGINE=INNODB;
@@ -157,36 +162,54 @@ VALUES ("Montevideo"), ("Canelones"),
 ("Tacuarembó"), ("Rivera"),
 ("Paysandú"), ("Salto"), ("Artigas");
 
+INSERT INTO grupo (nom_grupo)
+VALUES
+    ("Director"),
+    ("Informática"),
+    ("Subdirección A"),
+    ("Subdirección B"),
+    ("Oficina"),
+    ("Compras"),
+    ("Auditoría")
+;
+
 INSERT INTO oficina (
-    desc_lugar, dir_lugar, depart_lugar,
-    ciudad_lugar, tel_lugar
+    desc_lugar, grupo_lugar, dir_lugar, depart_lugar,
+    ciudad_lugar, tel_lugar, fk_grupo, fk_dep
 ) VALUES (
-    "Oficina Número 1", "Calle Random 1",
-    "Montevideo", "Montevideo", 094132471
+    "Oficina Número 1", "Oficina", "Calle Random 1",
+    "Montevideo", "Montevideo", 094132471,
+    5, 1
 ),
 (
-    "Oficina Número 2", "Calle Random 2",
-    "Montevideo", "Montevideo", 091356985
+    "Oficina Número 2", "Oficina", "Calle Random 2",
+    "Montevideo", "Montevideo", 091356985,
+    5, 1
 ),
 (
-    "Oficina Número 3", "Calle Random 3",
-    "Montevideo", "Montevideo", 092358985
+    "Oficina Número 3", "Oficina", "Calle Random 3",
+    "Montevideo", "Montevideo", 092358985,
+    5, 1
 ),
 (
-    "Oficina Número 4", "Calle Random 4",
-    "Montevideo", "Montevideo", 095355685
+    "Oficina Número 4", "Oficina", "Calle Random 4",
+    "Montevideo", "Montevideo", 095355685,
+    5, 1
 ),
 (
-    "Oficina Número 5", "Calle Random 5",
-    "Montevideo", "Montevideo", 097356990
+    "Oficina Número 5", "Oficina", "Calle Random 5",
+    "Montevideo", "Montevideo", 097356990,
+    5, 1
 ),
 (
-    "Oficina Número 6", "Calle Random 6",
-    "Montevideo", "Montevideo", 099344985
+    "Oficina Número 6", "Oficina", "Calle Random 6",
+    "Montevideo", "Montevideo", 099344985,
+    5, 1
 ),
 (
-    "Oficina Número 7", "Calle Random 7",
-    "Montevideo", "Montevideo", 091234567
+    "Oficina Número 7", "Oficina", "Calle Random 7",
+    "Montevideo", "Montevideo", 091234567,
+    5, 1
 );
 
 INSERT INTO proveedor (
@@ -207,16 +230,51 @@ INSERT INTO proveedor (
     "Proveedor 5", "Dirección 5", 099067431
 );
 
-INSERT INTO grupo(nom_grupo)
-VALUES
-    ("Director"),
-    ("Informática"),
-    ("Subdirección A"),
-    ("Subdirección B"),
-    ("Oficina"),
-    ("Compras"),
-    ("Auditoría")
+INSERT INTO estado (nombre_estado)
+VALUES 
+    ("Pre Stock"), ("Stock"),
+    ("Taller"), ("Instalado"),
+    ("Garantía"), ("Desaparecido"),
+    ("Desguazado")
 ;
+
+INSERT INTO tipo_equipamiento (nom_tipo)
+VALUES
+    ("Monitor"), ("Computadora"), ("Gabinete"),
+    ("Impresora"), ("Tarjeta de Red"),
+    ("Tarjeta Gráfica"), ("Memoria RAM"),
+    ("HDD"), ("SSD"), ("Procesador"),
+    ("Lectora/Grabadora de CD/DVD"),
+    ("Router"), ("Switch"), ("Cable RJ45"),
+    ("Cable VGA"), ("Cable HDMI"), ("Placa Madre"),
+    ("Fuente de Alimentación"), ("Cartucho de Tinta"),
+    ("Mouse"), ("Teclado"), ("Parlante")
+;
+
+INSERT INTO est_sucesor (fk_estado, fk_est_sucesor)
+VALUES 
+    (1, 2), (2, 4), (2, 6),
+    (3, 4), (3, 5), (3, 7),
+    (3, 6), (3, 2), (4, 3),
+    (4, 6), (5, 3), (6, NULL),
+    (7, 2)
+;
+
+INSERT INTO equipamiento (
+    fecha_adq, garantia, desc_equip, marca_equip,
+    tipo, lugar_equip, estado_equip, fk_estado, fk_tipo, fk_prov
+) VALUES (
+    DATE '2020-01-01', 24, 'Teclado', 'Kolke',
+    'Componente', 'Oficina 5', 'Instalado', 4, 21, 5
+),
+(
+    DATE '2020-02-02', 12, 'Tarjeta Gráfica', 'NVIDIA',
+    'Componente', 'Oficina 3', 'Instalado', 4, 6, 3
+),
+(
+    DATE '2020-03-03', 9, 'Memoria RAM', 'ADATA',
+    'Componente', NULL, 'Stock', 2, 7, NULL
+);
 
 INSERT INTO usuario (
     grupo_user, mail_user, pass_user,

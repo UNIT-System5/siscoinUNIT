@@ -89,7 +89,8 @@ unix_socket=OFF
 # Haciendo el deploy de la página...
 mkdir /root/site 
 git clone -b main https://github.com/UNIT-System5/siscoinUNIT.git /root/site
-cp -r /root/site/proyecto-iti/* /srv/http/
+sed -i 's|DocumentRoot "/srv/http"|DocumentRoot "/srv/http/proyecto-iti"|' /etc/httpd/conf/httpd.conf 
+cp -r /root/site/* /srv/http/
 
 echo "Configuración lista. Procediendo a iniciar servicios..."
 

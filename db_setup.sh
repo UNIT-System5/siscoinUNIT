@@ -8,10 +8,10 @@ user=root
 password=20092009
 " > /root/.my.cnf
 
-user=root
-pswd=20092009
+#user=root
+#pswd=20092009
 
-mysql -u $user -p$pswd < /root/Create_Database.sql
+mysql  < /root/Create_Database.sql
 
 
 # Los usuarios aun no se encuentran 100% definidos
