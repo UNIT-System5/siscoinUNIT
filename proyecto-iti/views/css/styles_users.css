@@ -1,0 +1,1428 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 0.7em;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #8080ff;
+  border-radius: 25px;
+  background-clip: padding-box;
+}
+
+a {
+  outline: none;
+}
+
+.header {
+  height: 6vh;
+  background-color: #322e64;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.videoContainer {
+  position: absolute;
+  height: 94vh;
+  width: 100%;
+  z-index: 8;
+  bottom: 0;
+  background-color: #1a1a1acc;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+}
+
+.videoContainer video {
+  height: 90%;
+  width: auto;
+  border-radius: 25px;
+}
+
+.editProfile {
+  position: absolute;
+  width: 100%;
+  height: 94vh;
+  z-index: 8;
+  bottom: 0;
+  background-color: #1a1a1acc;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+}
+
+.editProfile form {
+  width: 30%;
+  height: 50%;
+  background-color: #f0f0f0;
+  border-radius: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: 'Open Sans', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+.editProfile form .fa-times {
+  top: 0.5em;
+  right: 0.8em;
+  position: absolute;
+  font-size: 2em;
+  z-index: 11;
+  color: #f0f0f0;
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
+  transition: -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+.editProfile form .fa-times:hover {
+  cursor: pointer;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.editProfile form .imgSpace {
+  width: 100%;
+  height: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  position: relative;
+}
+
+.editProfile form .imgSpace .imgBg {
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(45deg, #7f00ff, #e100ff);
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.editProfile form .imgSpace .imgContainer {
+  height: 6em;
+  width: 6em;
+  border-radius: 50%;
+  background-color: #391661;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.editProfile form .imgSpace .imgContainer img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.editProfile form .imgSpace .chFile {
+  border: none;
+  outline: none;
+  width: 3em;
+  height: 3em;
+  background-color: #7f00ff;
+  color: #f0f0f0;
+  border-radius: 50%;
+  position: absolute;
+  -webkit-transform: translate(2.5em, 0.7em);
+          transform: translate(2.5em, 0.7em);
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+  z-index: 11;
+}
+
+.editProfile form .imgSpace .chFile:hover {
+  cursor: pointer;
+  background-color: #570ea0;
+}
+
+@-webkit-keyframes buttonConfirm {
+  to {
+    -webkit-transform: translate(-2.5em, 0.7em);
+            transform: translate(-2.5em, 0.7em);
+  }
+}
+
+@keyframes buttonConfirm {
+  to {
+    -webkit-transform: translate(-2.5em, 0.7em);
+            transform: translate(-2.5em, 0.7em);
+  }
+}
+
+.editProfile form .imgSpace .confirm {
+  border: none;
+  outline: none;
+  width: 3em;
+  height: 3em;
+  background-color: #41d641;
+  color: #f0f0f0;
+  border-radius: 50%;
+  position: absolute;
+  -webkit-transform: translate(2.5em, 0.7em);
+          transform: translate(2.5em, 0.7em);
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+  -webkit-animation: buttonConfirm 0.3s ease-out forwards;
+          animation: buttonConfirm 0.3s ease-out forwards;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+  z-index: 10;
+}
+
+.editProfile form .imgSpace .confirm:hover {
+  cursor: pointer;
+  background-color: #2d992d;
+}
+
+.editProfile form input {
+  display: none;
+}
+
+.editProfile form .dName {
+  width: 100%;
+  height: 4em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.editProfile form .otherStuff {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 30%;
+  width: 100%;
+}
+
+.editProfile form .otherStuff .dGroup {
+  width: 45%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5em;
+}
+
+.editProfile form .otherStuff .dGroup .groupsI {
+  height: 2.5em;
+  width: 2.5em;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #7f00ff, #e100ff);
+  color: #f0f0f0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.5em;
+}
+
+.editProfile form .otherStuff .dLugar {
+  width: 45%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5em;
+}
+
+.editProfile form .otherStuff .dLugar .officeI {
+  height: 2.5em;
+  width: 2.5em;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #7f00ff, #e100ff);
+  color: #f0f0f0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.5em;
+}
+
+.nav {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 2vw;
+  font-size: 1.1em;
+  font-weight: 700;
+  padding-right: 40px;
+}
+
+.nav input:focus {
+  outline: none;
+}
+
+.separator {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.searchbar {
+  height: 100%;
+  width: 15%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  position: relative;
+}
+
+.searchbar input {
+  position: absolute;
+  height: 60%;
+  width: 90%;
+  border: none;
+  border-bottom: 0.2em solid #f3f3f3;
+  color: #f3f3f3;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  background-color: transparent;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.searchbar input:focus {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transform-origin: right;
+          transform-origin: right;
+}
+
+.searchbar input:focus ~ i {
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+.searchbar i {
+  font-size: 1.2em;
+  color: #f3f3f3;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.searchbar i:hover {
+  cursor: pointer;
+  color: #8080ff;
+}
+
+.menu {
+  width: 4%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 11;
+}
+
+.menu i {
+  color: #F0F0F0;
+  font-size: 150%;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.menu i:hover {
+  cursor: pointer;
+  color: #8080ff;
+}
+
+.menu .fa-bars:focus-within + .leftbar {
+  -webkit-transform: translate(0vw);
+          transform: translate(0vw);
+}
+
+.logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.logoimg {
+  height: 4.7vh;
+  width: auto;
+  z-index: 11;
+}
+
+.logoimg:hover {
+  cursor: pointer;
+}
+
+.leftbar {
+  height: 100vh;
+  width: 12em;
+  outline: none;
+  padding-top: 6vh;
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  left: 0;
+  background-color: #201d4b;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transform: translate(-18em);
+          transform: translate(-18em);
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+  color: #f0f0f0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.menu_item {
+  height: 8%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.menu_item a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5em;
+  padding-left: 1.5em;
+  text-decoration: none;
+  color: #f0f0f0;
+  -webkit-transition: background-color 0.2s ease-out;
+  transition: background-color 0.2s ease-out;
+}
+
+.menu_item a .fa-times {
+  font-size: 1.8em;
+}
+
+.menu_item a h2 {
+  font-weight: 600;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+  font-size: 1rem;
+}
+
+.menu_item:hover i, .menu_item:hover h2 {
+  color: #8080ff;
+}
+
+.menu_item:hover a {
+  background-color: #110F30;
+}
+
+.signin {
+  width: 1.5em;
+  height: 1.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  outline: none;
+  border: none;
+}
+
+.signin img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-color: #FFF;
+  outline: none;
+  border: 1px solid #eaeaea;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.signin:focus-within .menupfp {
+  height: 12vh;
+  opacity: 1;
+  visibility: visible;
+}
+
+.signin:focus-within .menupfp::before {
+  height: 30px;
+  opacity: 1;
+  visibility: visible;
+}
+
+.menupfp {
+  height: 0;
+  width: 10vw;
+  background-color: #322e64;
+  -webkit-box-shadow: -5px 5px 20px 0 #1a1a1a93;
+          box-shadow: -5px 5px 20px 0 #1a1a1a93;
+  right: 0;
+  top: 1.5vh;
+  margin-right: 10px;
+  margin-top: 6vh;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 15px;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+  opacity: 0;
+  visibility: hidden;
+  outline: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  z-index: 10;
+}
+
+.menupfp a {
+  width: 100%;
+  height: 50%;
+  text-decoration: none;
+  color: #f0f0f0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.6em;
+  padding-left: 2em;
+  border-radius: 0 0 15px 15px;
+  gap: 0.5em;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.menupfp a i {
+  font-size: 1.4em;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.menupfp a h2 {
+  font-weight: 600;
+}
+
+.menupfp a .one {
+  margin-top: 0.5em;
+}
+
+.menupfp a .two {
+  margin-bottom: 0.5em;
+}
+
+.menupfp a:hover {
+  background-color: #110F30;
+  color: #8080ff;
+  cursor: pointer;
+}
+
+.menupfp a:hover i {
+  color: #8080ff;
+}
+
+.menupfp .editP {
+  border-radius: 15px 15px 0 0;
+}
+
+.menupfp::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  right: 30px;
+  width: 30px;
+  height: 0;
+  background-color: #322e64;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.container1 {
+  height: 94vh;
+  width: 100%;
+  background-color: #f0f0f0;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: hidden;
+}
+
+.sure {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #1a1a1acc;
+  z-index: 100;
+  opacity: 0;
+}
+
+.sure .content {
+  height: 25%;
+  width: 30%;
+  background-color: #f0f0f0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1em;
+  border-radius: 25px;
+}
+
+.sure .content h2 {
+  font-family: 'Open Sans', sans-serif;
+  color: #110F30;
+  font-weight: 700;
+  font-size: 1.2em;
+  height: 20%;
+}
+
+.sure .content .sBtns {
+  width: 100%;
+  height: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 2em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sure .content .sBtns button {
+  height: 3em;
+  width: 9em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5em;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.8em;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  -webkit-box-shadow: 5px 5px 20px #a4a4a4, -10px -10px 20px #ffffff;
+          box-shadow: 5px 5px 20px #a4a4a4, -10px -10px 20px #ffffff;
+  color: #f0f0f0;
+  -webkit-transition: background 0.2s ease-out;
+  transition: background 0.2s ease-out;
+}
+
+.sure .content .sBtns button:nth-child(1) {
+  background-color: #5a1799;
+}
+
+.sure .content .sBtns button:nth-child(1):hover {
+  cursor: pointer;
+  background-color: #380f5e;
+}
+
+.sure .content .sBtns button:nth-child(2) {
+  background-color: #d62f59;
+}
+
+.sure .content .sBtns button:nth-child(2):hover {
+  cursor: pointer;
+  background-color: #a71b3e;
+}
+
+.switchBtns {
+  height: 15%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 2em;
+}
+
+.switchBtns button {
+  height: 3em;
+  width: 9em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5em;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.8em;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  background-color: #5a1799;
+  -webkit-box-shadow: 5px 5px 20px #a4a4a4, -10px -10px 20px #ffffff;
+          box-shadow: 5px 5px 20px #a4a4a4, -10px -10px 20px #ffffff;
+  color: #f0f0f0;
+  -webkit-transition: background 0.2s ease-out;
+  transition: background 0.2s ease-out;
+}
+
+.switchBtns button:hover {
+  cursor: pointer;
+  background-color: #380f5e;
+}
+
+.switchBtns .del {
+  background-color: #d62f59;
+}
+
+.switchBtns .del:hover {
+  cursor: pointer;
+  background-color: #a71d3f;
+}
+
+.switchBtns .view {
+  background-color: #143296;
+}
+
+.switchBtns .view:hover {
+  cursor: pointer;
+  background-color: #162c72;
+}
+
+@-webkit-keyframes formAnim {
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes formAnim {
+  to {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes formAnim2 {
+  from {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  to {
+    -webkit-transform: translateY(-50em);
+            transform: translateY(-50em);
+  }
+}
+
+@keyframes formAnim2 {
+  from {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  to {
+    -webkit-transform: translateY(-50em);
+            transform: translateY(-50em);
+  }
+}
+
+.formCreate {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 10;
+  position: absolute;
+  padding-top: 3em;
+  padding-bottom: 1em;
+  background-color: #1a1a1acc;
+  opacity: 0;
+}
+
+.formCreate.active form {
+  -webkit-animation: formAnim2 0.8s cubic-bezier(0.8, -0.46, 0.22, 1.31);
+          animation: formAnim2 0.8s cubic-bezier(0.8, -0.46, 0.22, 1.31);
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.formCreate form {
+  height: 95%;
+  width: 30%;
+  border-radius: 25px;
+  background: #f0f0f0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  position: relative;
+  -webkit-transform: translateY(-50em);
+          transform: translateY(-50em);
+  -webkit-animation: formAnim 0.8s cubic-bezier(0.8, -0.46, 0.22, 1.31);
+          animation: formAnim 0.8s cubic-bezier(0.8, -0.46, 0.22, 1.31);
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.formCreate form h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 800;
+  font-size: 2em;
+  color: #110F30;
+}
+
+.formCreate form .closeForm {
+  height: 1em;
+  width: 1em;
+  font-size: 1.5em;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #110F30;
+  top: 1em;
+  right: 1em;
+  position: absolute;
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
+  transition: -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+.formCreate form .closeForm:hover {
+  background-color: transparent;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -webkit-transform: scale(1.15);
+          transform: scale(1.15);
+}
+
+.formCreate form input {
+  height: 3em;
+  width: 70%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 3px solid #110F30;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9em;
+}
+
+.formCreate form .selectCreate, .formCreate form .selectOffice {
+  width: 70%;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "select";
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.formCreate form .selectCreate::after, .formCreate form .selectOffice::after {
+  content: '';
+  -webkit-clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+          clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  width: 0.8em;
+  height: 0.5em;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: select;
+      justify-self: end;
+  margin-right: 1em;
+  background-color: #110F30;
+  pointer-events: none;
+  -webkit-transition: -webkit-transform 0.2s ease-out;
+  transition: -webkit-transform 0.2s ease-out;
+  transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
+}
+
+.formCreate form .selectCreate:focus-within::after, .formCreate form .selectOffice:focus-within::after {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.formCreate form .selectCreate select, .formCreate form .selectOffice select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 100%;
+  height: 3em;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  padding-inline: 1em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: select;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.8em;
+  color: #535353;
+  background: linear-gradient(145deg, #d3d3d3, #fafafa);
+  -webkit-box-shadow: 10px 10px 20px #a4a4a4, -10px -10px 20px #ffffff;
+          box-shadow: 10px 10px 20px #a4a4a4, -10px -10px 20px #ffffff;
+}
+
+.formCreate form .selectCreate select:hover, .formCreate form .selectOffice select:hover {
+  cursor: pointer;
+}
+
+.formCreate form button {
+  height: 2.7em;
+  width: 7em;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  background-color: #110F30;
+  -webkit-box-shadow: 10px 10px 20px #a4a4a4, -10px -10px 20px #ffffff;
+          box-shadow: 10px 10px 20px #a4a4a4, -10px -10px 20px #ffffff;
+  color: #eaeaea;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.9em;
+  -webkit-transition: background 0.2s ease-out;
+  transition: background 0.2s ease-out;
+}
+
+.formCreate form button:hover {
+  cursor: pointer;
+  background-color: #251e88;
+}
+
+.emptyUser {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 60%;
+}
+
+.emptyUser h1 {
+  font-family: 'Open Sans', sans-serif;
+  color: #1a1a1a80;
+}
+
+.tableUser {
+  height: 85%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.tableUser .table {
+  max-height: 90%;
+  width: 85%;
+  overflow-y: scroll;
+  border-radius: 15px;
+  -webkit-box-shadow: 10px 10px 20px #a4a4a4, -10px -10px 20px #ffffff;
+          box-shadow: 10px 10px 20px #a4a4a4, -10px -10px 20px #ffffff;
+}
+
+.tableUser .table table {
+  min-height: 100%;
+  width: 100%;
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+  border-spacing: 0;
+  color: #110F30;
+}
+
+.tableUser .table table tr {
+  height: 3em;
+  -webkit-transition: background 0.3s ease-out;
+  transition: background 0.3s ease-out;
+}
+
+.tableUser .table table tr:hover {
+  background-color: #c7c7c7;
+}
+
+.tableUser .table table tr .id_th {
+  width: 5%;
+}
+
+.tableUser .table table tr .group_th {
+  width: 20%;
+}
+
+.tableUser .table table tr .office_th {
+  width: 20%;
+}
+
+.tableUser .table table tr .mail_th {
+  width: 25%;
+}
+
+.tableUser .table table tr .name_th {
+  width: 22%;
+}
+
+.tableUser .table table tr th {
+  width: 3em;
+  background-color: #f0f0f0;
+  font-weight: 700;
+  padding-left: 1.5em;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.tableUser .table table tr td {
+  font-weight: 600;
+  padding-left: 1.5em;
+}
+
+.tableUser .table table tr td.tdBtns {
+  height: 3em;
+  padding-left: 0.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1em;
+}
+
+.tableUser .table table tr td.tdBtns button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #110F30;
+  font-size: 0.9em;
+}
+
+.tableUser .table table tr td.tdBtns button .fa-pencil-alt {
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.tableUser .table table tr td.tdBtns button .fa-pencil-alt:hover {
+  cursor: pointer;
+  color: #322fd6;
+}
+
+.tableUser .table table tr td.tdBtns button .fa-trash {
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+  opacity: 1;
+}
+
+.tableUser .table table tr td.tdBtns button .fa-trash:hover {
+  cursor: pointer;
+  color: #d62f59;
+}
+
+.tableUser .table table tr td.tdBtns button .fa-check {
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+  font-size: 1em;
+  opacity: 0;
+}
+
+.tableUser .table table tr td.tdBtns button .fa-check:hover {
+  cursor: pointer;
+  color: #338d27;
+}
+
+.tableUser .table table tr td.tdBtns button .fa-times {
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+  font-size: 1em;
+  opacity: 0;
+}
+
+.tableUser .table table tr td.tdBtns button .fa-times:hover {
+  cursor: pointer;
+  color: #d62f59;
+}
+
+.tableUser .table table tr td.tdBtns button .fa-exclamation-triangle {
+  opacity: 0;
+  font-size: 1em;
+  color: #ff7a2d;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.tableUser .table table tr td.tdBtns button .fa-exclamation-triangle:hover ~ span, .tableUser .table table tr td.tdBtns button .fa-exclamation-triangle:hover span::before {
+  opacity: 1;
+}
+
+.tableUser .table table tr td.tdBtns button span {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.8em;
+  font-weight: 300;
+  width: 8em;
+  height: 3.5em;
+  padding: 1em 0.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #eaeaea;
+  background-color: #110F30;
+  border-radius: 10px;
+  position: absolute;
+  -webkit-transition: opacity 0.2s ease-out;
+  transition: opacity 0.2s ease-out;
+  opacity: 0;
+  -webkit-transform: translate(-3.2em, -6.5em);
+          transform: translate(-3.2em, -6.5em);
+  z-index: 1;
+}
+
+.tableUser .table table tr td.tdBtns button span::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+  width: 20px;
+  height: 20px;
+  background-color: #110F30;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  opacity: 1;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.tableUser .table table tr td input {
+  height: 2.5em;
+  width: 70%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 3px solid #110F30;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9em;
+  opacity: 0;
+}
+
+.tableUser .table table tr td .selectMod {
+  width: 70%;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "select";
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+}
+
+.tableUser .table table tr td .selectMod::after {
+  content: '';
+  -webkit-clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+          clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  width: 0.8em;
+  height: 0.5em;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: select;
+  -ms-grid-column-align: end;
+      justify-self: end;
+  margin-right: 1em;
+  background-color: #110F30;
+  pointer-events: none;
+  -webkit-transition: -webkit-transform 0.2s ease-out;
+  transition: -webkit-transform 0.2s ease-out;
+  transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
+}
+
+.tableUser .table table tr td .selectMod:focus-within::after {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.tableUser .table table tr td .selectMod select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 100%;
+  height: 2.5em;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  padding-inline: 1em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: select;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.8em;
+  color: #666666;
+  background: linear-gradient(145deg, #d3d3d3, #fafafa);
+  -webkit-box-shadow: 7px 7px 20px #a4a4a4;
+          box-shadow: 7px 7px 20px #a4a4a4;
+}
+
+.tableUser .table table tr td .selectMod select:hover {
+  cursor: pointer;
+}
+
+.tableUser .table.delete {
+  width: 40%;
+}
+
+.tableUser .table.delete table tr {
+  height: 4em;
+}
+
+.tableUser .table.delete button {
+  height: 3em;
+  width: 6em;
+  font-family: 'Open Sans', sans-serif;
+  border: none;
+  border-radius: 25px;
+  -webkit-box-shadow: 5px 5px 20px #a4a4a4, -10px -10px 20px #ffffff;
+          box-shadow: 5px 5px 20px #a4a4a4, -10px -10px 20px #ffffff;
+  font-size: 0.8em;
+  color: #f0f0f0;
+  background-color: #d62f59;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.tableUser .table.delete button:hover {
+  cursor: pointer;
+  background-color: #a71d3f;
+}
+/*# sourceMappingURL=styles_users.css.map */
