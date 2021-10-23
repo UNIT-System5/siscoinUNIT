@@ -14,7 +14,7 @@ else
             echo "Ha ocurrido un error al comprimir la base de datos."
             echo "La salida del programa puede ser vista en /root/logs/log.txt"
         else
-            echo "Operación exitosa."
+            echo "Operación exitosa: Backup Base de Datos"
             echo "Operación exitosa." >> /root/logs/log.txt
         fi
 fi    

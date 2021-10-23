@@ -69,7 +69,7 @@ echo "Preparando phpMyAdmin..."
 
 # Creando el directorio para los backups...
 mkdir /mnt/backup_device
-mkdir /mnt/backup_device/full 
+#mkdir /mnt/backup_device/full 
 
 # Creando el directorio para los logs de auditoria...
 mkdir /root/logs
@@ -91,6 +91,9 @@ mkdir /root/site
 git clone -b main https://github.com/UNIT-System5/siscoinUNIT.git /root/site
 sed -i 's|DocumentRoot "/srv/http"|DocumentRoot "/srv/http/proyecto-iti"|' /etc/httpd/conf/httpd.conf 
 cp -r /root/site/* /srv/http/
+# Para que se puedan crear y ver las fotos de perfil...
+chown http:http /srv/http/proyecto-iti/profilePics 
+chmod 700 /srv/http/proyecto-iti/profilePics
 
 echo "Configuración lista. Procediendo a iniciar servicios..."
 

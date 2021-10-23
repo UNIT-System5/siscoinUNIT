@@ -7,25 +7,26 @@ echo "Probablemente sea más seguro
 verificar las configuraciones y
 copiar uno por uno"
 echo "Desea continuar?
-s/n"
+"
 
-read sel
+select destc in Si No;
 
-case $sel in
-	s)
+do 
+case $destc in
+	Si)
 		rsync -aAXHv /mnt/backup_device/etc/* /etc
 		echo "Se ha ejecutado la restauración" >> /root/logs/log.txt
 		;;
-	n)
+	No)
 		echo "Mejor no..."
 		echo "Se ha abortado la restauración" >> /root/logs/log.txt
+		break
 		;;
 	*)
-		echo "Sos la peor pesadilla de los testers.
-		Dale, elegi bien."
+		echo "Selección inválida"
 		;;
 
 esac
-
+done
 
 

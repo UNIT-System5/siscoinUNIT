@@ -5,12 +5,14 @@ date >> /root/logs/log.txt
 echo "Accedio al menu administrativo" >> /root/logs/log.txt
 echo "" >> /root/logs/log.txt
 
+
 initusercreation() {
 	logname >> /root/logs/log.txt
 	date >> /root/logs/log.txt
 	echo "Ejecuto el script de creacion inicial de usuarios" >> /root/logs/log.txt
 	echo "" >> /root/logs/log.txt
 	/bin/bash /root/users.sh
+	flaw
 }
 
 backupdb() {
@@ -20,6 +22,7 @@ backupdb() {
 	echo "Resultado de la operación: " >> /root/logs/log.txt
 	/bin/bash /root/backup_sql.sh 2>> /root/logs/log.txt
 	echo "" >> /root/logs/log.txt
+	flaw
 }
 
 restoredb() {
@@ -29,14 +32,17 @@ restoredb() {
 	echo "Resultado de la operación: " >> /root/logs/log.txt
     /bin/bash /root/restore_sql.sh 2>> /root/logs/log.txt 
 	echo "" >> /root/logs/log.txt
+	flaw
 }
 
 cronctl() {
 	/bin/bash /root/cronctl.sh
+	flaw
 }
 
 networkctl() {
-	/bin/bash /root/networkctl.sh 
+	/bin/bash /root/networkctl.sh
+	flaw 
 }
 
 addofficeuser() {
@@ -57,7 +63,10 @@ addofficeuser() {
         date >> /root/logs/log.txt
 	echo "Creo un usuario de oficina" >> /root/logs/log.txt
         echo "" >> /root/logs/log.txt
+		clear
+	echo "Operación exitosa: Crear usuario de oficina"
 	fi
+	flaw
 }
 
 addadminuser() {
@@ -77,7 +86,10 @@ addadminuser() {
         date >> /root/logs/log.txt
         echo "Creo un usuario administrativo" >> /root/logs/log.txt
         echo "" >> /root/logs/log.txt
+		clear
+		echo "Operación exitosa: Crear usuario administrativo"
 	fi 
+	flaw
 }
 
 addunituser() {
@@ -97,7 +109,10 @@ addunituser() {
     date >> /root/logs/log.txt
     echo "Creo un usuario del grupo UNIT" >> /root/logs/log.txt
     echo "" >> /root/logs/log.txt
+	clear
+	echo "Operación exitosa: Crear usuario de soporte"
 	fi
+	flaw
 }
 
 addgroup() {
@@ -112,7 +127,10 @@ addgroup() {
         date >> /root/logs/log.txt
         echo "Creo un grupo" >> /root/logs/log.txt
         echo "" >> /root/logs/log.txt
+		clear
+		echo "Operación exitosa: añadir grupo"
 	fi
+	flaw
 }
 
 homebackup() {
@@ -122,6 +140,7 @@ homebackup() {
     echo "Resultado de la operación: " >> /root/logs/log.txt
 	/bin/bash /root/homebackup.sh 2>> /root/logs/log.txt
 	echo "" >> /root/logs/log.txt
+	flaw
 }
 
 remote_backup() {
@@ -131,6 +150,7 @@ remote_backup() {
     echo "Resultado de la operación: " >> /root/logs/log.txt
 	/bin/bash /root/remote_backup.sh 2>> /root/logs/log.txt
 	echo "" >> /root/logs/log.txt
+	flaw
 }
 
 backup_conf() {
@@ -140,6 +160,7 @@ backup_conf() {
     echo "Resultado de la operación: " >> /root/logs/log.txt
 	/bin/bash /root/backup_conf.sh 2>> /root/logs/log.txt
 	echo "" >> /root/logs/log.txt
+	flaw
 }
 
 
@@ -150,6 +171,7 @@ restore_home() {
     #echo "Salida del comando: " >> /root/logs/log.txt
 	/bin/bash /root/restore_home.sh 
 	#echo "" >> /root/logs/log.txt
+	flaw
 }
 
 
@@ -160,6 +182,7 @@ restore_conf() {
     #echo "Salida del comando: " >> /root/logs/log.txt
 	/bin/bash /root/restore_conf.sh
 	#echo "" >> /root/logs/log.txt
+	flaw
 }
 
 restore_remote() {
@@ -167,142 +190,162 @@ restore_remote() {
     date >> /root/logs/log.txt
     echo "Descargo backups del servidor remoto" >> /root/logs/log.txt
     echo "Resultado de la operación: " >> /root/logs/log.txt
-	/bin/bash /root/restore_remote.sh 2>> /root/logs/log.txt
+	#/bin/bash /root/restore_remote.sh 2>> /root/logs/log.txt
+	/bin/bash /root/restore_ctl.sh 2>> /root/logs/log.txt
 	echo "" >> /root/logs/log.txt
+	flaw
 }
 
 
 sysdlog() {
 	/bin/bash /root/systemdlogs.sh
+	flaw
 }
 
 unitlogs() {
-	echo "¿Qué logs desea ver?"
-	echo "1) Logs de operaciones y errores."
-	echo "2) Logs de transacciones efectuadas por rsync."
-	read logch
-	case $logch in
-		1)
-			less /root/logs/log.txt
-			;;
-		2)
-			less /root/logs/rsynclog.txt
-			;;
-		*)
-			echo "¿Es tan díficil elegir entre dos opciones?"
-			;;
-	esac 
+	/bin/bash /root/unitlogs.sh
+	flaw
 }
 
-clear
-echo "Seleccione lo que desea hacer, ingresando el correspondiente número"
-echo "1. Creación de los usuarios por defecto."
-echo "2. Crear respaldo de la base de datos."
-echo "3. Restaurar base de datos."
-echo "4. Control de Cron."
-echo "5. Control de Red."
-echo "6. Agregar usuario de oficina."
-echo "7. Agregar usuario administrativo (Empresa)."
-echo "8. Agregar usuario de soporte UNIT."
-echo "9. Agregar grupo."
-echo "10. Backup de la carpeta personal."
-echo "11. Backup de archivos de configuración"
-echo "12. Backup a servidor remoto."
-echo "13. Restaurar archivos directorio Home"
-echo "14. Restaurar archivos de configuración"
-echo "15. Recibir respaldos del servidor remoto"
-echo "16. Acceder a submenú logs systemd (Servicios/usuarios del sistema)"
-echo "17. Ver logs de auditoría y errores (Scripts de UNIT)"
+backup_pol() {
+	/bin/bash /root/backup_pol.sh
+	flaw
+}
 
-read choice
+flaw() {
+	echo "---VOLVIENDO AL MENU---"
+	for i in {0..18}
+	do
+		g=$i
+		((g++))
+		echo $g") ""${choices[$i]}"
+	done
+}
 
+ 
+PS3="Seleccione lo que desea hacer, ingresando el correspondiente número: "
+choices=(
+"Creación de los usuarios por defecto." 
+"Crear respaldo de la base de datos." 
+"Restaurar base de datos." 
+"Control de Cron."
+"Control de Red."
+"Agregar usuario de oficina."
+"Agregar usuario administrativo (Empresa)."
+"Agregar usuario de soporte (UNIT)."
+"Agregar grupo."
+"Backup de la carpeta personal."
+"Backup de archivos de configuración."
+"Backup a servidor remoto."
+"Restaurar archivos directorio Home."
+"Restaurar archivos de configuración."
+"Recibir respaldos del servidor remoto."
+"Acceder a submenú logs systemd (Servicios/usuarios del sistema)."
+"Ver logs de auditoría y errores (Scripts de UNIT)."
+"Ver/editar política de respaldos."
+"Salir."
+)
+select choice in "${choices[@]}"
+do 
 case $choice in
-	1)
+	"Creación de los usuarios por defecto.")
 		clear
 		initusercreation
 		;;
-	2)
+	"Crear respaldo de la base de datos.")
 		clear
 		backupdb
 		;;
-	3)
+	"Restaurar base de datos.")
 		clear
 		restoredb
 		;;
-	4)
+	"Control de Cron.")
 		clear
 		cronctl
 		;;
-	5)
+	"Control de Red.")
 		clear
 		networkctl
 		;;
-	6)
+	"Agregar usuario de oficina.")
 		clear
 		addofficeuser
 		;;
-	7)
+	"Agregar usuario administrativo (Empresa).")
 		clear
 		addadminuser
 		;;
-	8)
+	"Agregar usuario de soporte (UNIT).")
 		clear
 		addunituser
 		;;
-	9)
+	"Agregar grupo.")
 		clear
 		addgroup
 		;;
 
-	10) 
+	"Backup de la carpeta personal.") 
 		clear
 		homebackup
 		;;
 		
 
-	
-
-
-	11)
+	"Backup de archivos de configuración.")
 		clear
 		backup_conf
 		;;
 
 
-	12) 
+	"Backup a servidor remoto.") 
 		clear
 		remote_backup
 		;;
 		
-	13)
+	"Restaurar archivos directorio Home.")
 		clear
 		restore_home
 		;;
 	
-	14)
+	"Restaurar archivos de configuración.")
 		clear
 		restore_conf
 		;;
 
-	15)	
+	"Recibir respaldos del servidor remoto.")	
 		clear
 		restore_remote
 		;;
 
-	16)
+	"Acceder a submenú logs systemd (Servicios/usuarios del sistema).")
 		clear
 		sysdlog
 		;;
 
-	17)
+	"Ver logs de auditoría y errores (Scripts de UNIT).")
 		clear
 		unitlogs
 		;;
+
+	"Ver/editar política de respaldos.")
+		clear
+		backup_pol
+		;;
+
+	"Salir.")
+		clear
+		echo "Adiós..."
+		break
+		;;
+	
 	*)
-                echo "Ingreso un valor no valido..."
-                ;;
+		clear
+        echo "Ha ingresado un valor inválido..."
+		echo ""
+		flaw 
+        ;;
 
 
 esac
-
+done 
 	

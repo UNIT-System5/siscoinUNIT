@@ -10,5 +10,6 @@ if ! rsync -aAXHv --update /etc /mnt/backup_device --log-file=/root/logs/rsynclo
         echo "La salida del programa se encuentra en el archivo /root/logs/log.txt"
     else
         echo "Operación exitosa" >> /root/logs/log.txt
-        echo "Operación exitosa"
+        clear
+        echo "Operación exitosa: Backup de /etc"
 fi

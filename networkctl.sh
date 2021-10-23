@@ -1,27 +1,38 @@
 #!/bin/bash
 
-echo "Ingrese 1 para reiniciar NetworkManager"
-echo "Ingrese 2 para habilitar el firewall"
-echo "Ingrese 3 para deshabilitar el firewall"
-echo "Ingrese 4 para restablecer la configuración de red"
-read optn
-	case $optn in
-                1)
-                        clear
+flaw4() {
+	echo ""
+	echo "---VOLVIENDO AL MENU---"
+	for i in {0..4}
+	do
+		g=$i
+		((g++))
+		echo $g") ""${networkctls[$i]}"
+	done
+}
+
+networkctls=(
+"Reiniciar NetworkManager"
+"Habilitar el firewall"
+"Deshabilitar el firewall"
+"Restablecer la configuración de red"
+"Volver al menú"
+)
+select networkctlse in "${networkctls[@]}"
+do
+	case $networkctlse in
+                "Reiniciar NetworkManager")
 			systemctl restart NetworkManager.service
                         ;;
-                2)
-                        clear
+                "Habilitar el firewall")
 			ufw enable
                         ;;
-                3)
-                        clear
+                "Deshabilitar el firewall")
 			ufw disable
                         ;;
 
 
-                4)
-                        clear
+                "Restablecer la configuración de red")
 			logname >> /root/logs/log.txt
                         date >> /root/logs/log.txt
                         echo "Ejecuto el script de configuracion inicial de red" >> /root/logs/log.txt
@@ -30,8 +41,14 @@ read optn
                         bash /root/networkconf.sh
                         reboot
                         ;;
+                "Volver al menú")
+                        clear
+                        break
+                        ;;
                 *)
-			clear
+                        clear
                         echo "Ingreso un valor no valido..."
+                        flaw4
                         ;;
         esac
+done

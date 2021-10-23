@@ -13,7 +13,8 @@
 # haciendo.
 
 
-echo "# Automatiza el backup de la base de datos... 
+echo '
+# Automatiza el backup de la base de datos... 
 0 6 * * * root /root/backup_sql.sh
 # Automatiza el backup de los directorios home...
 0 6 * * * root /root/homebackup.sh
@@ -30,9 +31,10 @@ echo "# Automatiza el backup de la base de datos...
 15 6 * * * root /root/remote_backup.sh
 # Lo mismo, pero la 2da iteracion diaria.
 15 19 * * * root /root/remote_backup.sh
-# Hace un backup no incremental del directorio home.
-0 6 * * 0 root /root/fullhome.sh
-# Hace un backup no incremental de /etc.
-0 6 * * 0 root /root/fullconf.sh
-# Envia los backups no incrementales a la ubicacion de red.
-15 6 * * 0 root /root/fullremote.sh" > /etc/crontab
+# Hace un backup no incremental del directorio home. DEPRECADO
+# 0 6 * * 0 root /root/fullhome.sh
+# Hace un backup no incremental de /etc. DEPRECADO
+# 0 6 * * 0 root /root/fullconf.sh
+# Realiza un backup no incremental a la ubicacion de red.
+15 6 * * 0 root /root/fullremote.sh
+' > /etc/crontab

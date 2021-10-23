@@ -9,19 +9,21 @@ Si bien se restauran los archivos,
 al estarse ejecutando la operacion como root
 se VAN A ARRUINAR LOS PERMISOS"
 echo "Continuar?
-s/n"
+"
 
-read sel
+select desth in Si No;
 
-case $sel in
+do
+case $desth in
 
-	s)	
+	Si)	
 		rsync -aAXHv /mnt/backup_device/home/* /home
 		echo "Se ha ejecutado la restauración" >> /root/logs/log.txt
 		;;
-	n)
-		echo "Sabia decision..."
+	No)
+		echo "Bien hecho."
 		echo "Se ha abortado la restauración" >> /root/logs/log.txt
+		break
 		;;
 	*)
 		echo "Solo hay dos opciones.
@@ -29,4 +31,4 @@ case $sel in
 		;;
 	
 esac
-
+done

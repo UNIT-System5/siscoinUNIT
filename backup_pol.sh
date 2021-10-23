@@ -2,21 +2,30 @@
 # Script para ver la politica de respaldo del servidor. Realmente lo unico
 # que hace es mostrar el crontab.
 
-echo "Desea ver la rutina de respaldo o editarla?
-1. Ver
-2. Editar"
+echo "Desea ver la rutina de respaldo o editarla?"
 
-read choice 
 
-case $choice in
-	1)
+select ar in Ver Editar Salir;
+
+do 
+case $ar in
+	Ver)
 		clear
 		less /etc/crontab
+		echo "1 para ver, 2 para editar, 3 para volver."
 		;;
-	2)
+	Editar)
 		nano /etc/crontab
+		echo "1 para ver, 2 para editar, 3 para volver."
+		;;
+
+	Salir)
+		clear
+		break
 		;;
 	*)
-		echo "Dale, elegi bien..."
+		echo "Valor inválido."
+		echo "1 para ver, 2 para editar, 3 para volver."
 		;;
 esac
+done

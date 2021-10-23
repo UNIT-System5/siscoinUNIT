@@ -27,7 +27,8 @@ else
                 echo "Ocurrio un error al reimplementar la base de datos"
             else
                 echo "Operación exitosa" >> /root/logs/log.txt
-                echo "Operación exitosa"
+                clear
+                echo "Operación exitosa: Restaurar DB"
             fi
         fi
     fi
