@@ -11,7 +11,7 @@ CREATE TABLE proveedor (
 CREATE TABLE tipo_equipamiento (
     id_tipo int(2) PRIMARY KEY AUTO_INCREMENT,
     nom_tipo varchar(40) CHARSET utf8 NOT NULL,
-    prestock int(5) NOT NULL
+    prestock int(5) 
 ) ENGINE=INNODB;
 
 CREATE TABLE provee (
