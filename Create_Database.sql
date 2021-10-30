@@ -11,7 +11,7 @@ CREATE TABLE proveedor (
 CREATE TABLE tipo_equipamiento (
     id_tipo int(2) PRIMARY KEY AUTO_INCREMENT,
     nom_tipo varchar(40) CHARSET utf8 NOT NULL,
-    prestock int(5) 
+    prestock int(5) NOT NULL
 ) ENGINE=INNODB;
 
 CREATE TABLE provee (
@@ -261,15 +261,15 @@ VALUES
 
 INSERT INTO tipo_equipamiento (nom_tipo)
 VALUES
-    ("Monitor"), ("Computadora"), ("Gabinete"),
-    ("Impresora"), ("Tarjeta de Red"),
-    ("Tarjeta Gráfica"), ("Memoria RAM"),
-    ("HDD"), ("SSD"), ("Procesador"),
-    ("Lectora/Grabadora de CD/DVD"),
-    ("Router"), ("Switch"), ("Cable RJ45"),
-    ("Cable VGA"), ("Cable HDMI"), ("Placa Madre"),
-    ("Fuente de Alimentación"), ("Cartucho de Tinta"),
-    ("Mouse"), ("Teclado"), ("Parlante")
+    ("Monitor", 0), ("Computadora", 0), ("Gabinete", 0),
+    ("Impresora", 0), ("Tarjeta de Red", 0),
+    ("Tarjeta Gráfica", 0), ("Memoria RAM", 0),
+    ("HDD", 0), ("SSD", 0), ("Procesador", 0),
+    ("Lectora/Grabadora de CD/DVD", 0),
+    ("Router", 0), ("Switch", 0), ("Cable RJ45", 0),
+    ("Cable VGA", 0), ("Cable HDMI", 0), ("Placa Madre", 0),
+    ("Fuente de Alimentación", 0), ("Cartucho de Tinta", 0),
+    ("Mouse", 0), ("Teclado", 0), ("Parlante", 0)
 ;
 
 INSERT INTO est_sucesor (fk_estado, fk_est_sucesor)
