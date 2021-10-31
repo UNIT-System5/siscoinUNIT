@@ -213,20 +213,19 @@
 
 .login_card {
   height: 75%;
-  width: 20%;
+  min-width: 18em;
   border-radius: 0 25px 25px 0;
   background-color: #110F30;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: 30% 1fr;
+      grid-template-rows: 30% 1fr;
 }
 
 .section1 {
-  height: 35%;
+  height: 100%;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -249,43 +248,35 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 100%;
 }
 
 .pfp img {
-  width: 60%;
-  height: 60%;
+  width: 80%;
+  height: 90%;
 }
 
 .section2 {
-  height: 65%;
+  height: 100%;
   width: 100%;
 }
 
 .section2 form {
-  height: 70%;
+  height: 100%;
   width: 100%;
-  padding-top: 2em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 45px;
+  display: -ms-grid;
+  display: grid;
   font-family: 'Open Sans', sans-serif;
+  -ms-grid-rows: 30% 0.5em 30% 0.5em 30%;
+      grid-template-rows: 30% 0.5em 30% 0.5em 30%;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
 }
 
 .section2 form input {
   border: none;
   width: 70%;
-  height: 40px;
+  height: 40%;
   border-radius: 25px;
   padding: 0 15px;
   font-weight: 600;
@@ -299,7 +290,11 @@
 .section2 form button {
   border: none;
   outline: none;
-  height: 50px;
+  height: 45%;
+  width: 45%;
+  justify-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   font-size: 1.2em;
@@ -311,11 +306,17 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   gap: 10px;
   background-color: #4949FC;
   -webkit-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
   color: #f0f0f0;
+  -ms-grid-row: 5;
+  -ms-grid-row-span: 1;
+  grid-row: 5 / 6;
 }
 
 .section2 form button:hover {
@@ -323,13 +324,34 @@
   background-color: #3030d4;
 }
 
+.section2 form .mail {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
 .input_pass {
   position: relative;
   width: 70%;
+  height: 40%;
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  grid-row: 3 / 4;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 
 .input_pass .password {
   width: 95%;
+  height: 100%;
 }
 
 .input_pass .showPass {
@@ -340,5 +362,18 @@
   width: 3.4em;
   outline: none;
   border-radius: 0 25px 25px 0;
+}
+
+.input_pass .showPass i {
+  font-size: 1em;
+}
+
+@media (max-width: 700px) {
+  .imglogin {
+    display: none;
+  }
+  .login_card {
+    border-radius: 25px;
+  }
 }
 /*# sourceMappingURL=styles2.css.map */
