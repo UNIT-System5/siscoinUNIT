@@ -397,15 +397,6 @@ INSERT INTO reporta_fallo (
     'Pendiente SubA', 4, 2
 );
 
-DROP USER 'login'@'%';
-
-DROP USER 'director'@'%';
-DROP USER 'informatica'@'%';
-DROP USER 'subA'@'%';
-DROP USER 'subB'@'%';
-DROP USER 'oficina'@'%';
-DROP USER 'compras'@'%';
-DROP USER 'auditoria'@'%';
 
 CREATE USER 'login'@'%' IDENTIFIED BY 'monitor.2701';
 
