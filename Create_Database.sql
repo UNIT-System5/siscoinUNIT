@@ -259,7 +259,7 @@ VALUES
     ("Desguazado")
 ;
 
-INSERT INTO tipo_equipamiento (nom_tipo)
+INSERT INTO tipo_equipamiento (nom_tipo, prestock)
 VALUES
     ("Monitor", 0), ("Computadora", 0), ("Gabinete", 0),
     ("Impresora", 0), ("Tarjeta de Red", 0),
@@ -397,6 +397,15 @@ INSERT INTO reporta_fallo (
     'Pendiente SubA', 4, 2
 );
 
+DROP USER 'login'@'%';
+
+DROP USER 'director'@'%';
+DROP USER 'informatica'@'%';
+DROP USER 'subA'@'%';
+DROP USER 'subB'@'%';
+DROP USER 'oficina'@'%';
+DROP USER 'compras'@'%';
+DROP USER 'auditoria'@'%';
 
 CREATE USER 'login'@'%' IDENTIFIED BY 'monitor.2701';
 
@@ -439,6 +448,7 @@ GRANT SELECT, INSERT, UPDATE ON siscoin_unit.marca TO 'compras'@'%';
 GRANT SELECT, UPDATE ON siscoin_unit.tipo_equipamiento TO 'compras'@'%';
 GRANT SELECT, INSERT, UPDATE ON siscoin_unit.equipamiento TO 'compras'@'%';
 GRANT SELECT, INSERT, UPDATE ON siscoin_unit.proveedor TO 'compras'@'%';
+GRANT SELECT, UPDATE ON siscoin_unit.realiza_soli TO 'compras'@'%';
 GRANT SELECT ON siscoin_unit.instala_cambia TO 'compras'@'%';
 GRANT SELECT ON siscoin_unit.oficina TO 'compras'@'%';
 GRANT SELECT ON siscoin_unit.usuario TO 'compras'@'%';
