@@ -144,7 +144,7 @@ groupdelete() {
     
 }
 
-chgpswd() {
+chgp() {
     echo "Ingrese el nombre del usuario cuya contraseña se desea cambiar:"
     read puser
     grep "$puser" /etc/group > /dev/null
@@ -219,7 +219,7 @@ case $uchoice in
         ;;
     "Cambiar contraseña de usuario")
         clear
-        chgpasswd
+        chgp
         flaw6
         ;;
     "Salir")
