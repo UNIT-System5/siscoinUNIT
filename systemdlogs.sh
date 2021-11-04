@@ -11,40 +11,49 @@ flaw2() {
 
 flog() {
 	journalctl -x
+	clear
 }
 
 
 bootlog() {
 	journalctl -b
+	clear
 }
 
 lasthour() {
 	journalctl -x --since "60 min ago"
+	clear
 }
 
 realtime() {
 	journalctl -fx
+	clear
 	}
 
 userlog() {
 	echo Ingrese el usuario de interés
 	read user
-	journalctl --user -u $user
+	userl=$(id -u $user) 
+	journalctl _UID=$userl
+	clear
 }
 
 
 authlog() {
 	journalctl SYSLOG_FACILITY=10
+	clear
 }
 
 critical() {
 	journalctl -p err..alert
+	clear
 }
 
 status() {
 	echo "Ingrese nombre del servicio a revisar"
 	read srv
 	journalctl -t $srv
+	clear
 }
 
 customtime() {
@@ -71,6 +80,7 @@ customtime() {
 			flaw2
 			;;
 		esac
+	clear
 }
 
 timeframe() {
@@ -81,6 +91,7 @@ timeframe() {
 	echo "Ahora la fecha final"
 	read endframe
 	journalctl --since "$initframe" --until "$endframe"
+	clear
 }
 
 

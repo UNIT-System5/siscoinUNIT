@@ -3,7 +3,7 @@
 # NOTA: La key pública debe definirse en la ubicación de backup
 # La ip probablemente varíe, consideresela un placeholder.
 
-if ! rsync -a --quiet --whole-file --ignore-times --compress-choice=zstd  --compress-choice=zstd -e ssh administrador@192.168.56.201:/home/administrador/backup_device/linker/ /mnt/backup_device 
+if ! rsync -a --quiet --whole-file --ignore-times --compress-choice=zstd  --compress-choice=zstd -e ssh administrador@192.168.56.201:/home/administrador/linker/backup_device/ /mnt/backup_device 
     then
         echo "Ha ocurrido un error al descargar los datos del servidor remoto"
         echo "Ha ocurrido un error al descargar los datos del servidor remoto" >> /root/logs/log.txt 

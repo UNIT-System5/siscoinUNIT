@@ -137,6 +137,7 @@ flaw() {
  
 PS3="Seleccione lo que desea hacer, ingresando el correspondiente número: "
 choices=( 
+"Control de usuarios."
 "Crear respaldo de la base de datos." 
 "Restaurar base de datos." 
 "Control de Cron."

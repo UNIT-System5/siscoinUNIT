@@ -2,11 +2,11 @@
 
 flaw6() {
 	echo "---VOLVIENDO AL MENU---"
-	for i in {0..7}
+	for i in {0..8}
 	do
 		g=$i
 		((g++))
-		echo $g") ""${uchoice[$i]}"
+		echo $g") ""${userc[$i]}"
 	done
 }
 
@@ -16,6 +16,8 @@ initusercreation() {
 	echo "Ejecuto el script de creacion inicial de usuarios" >> /root/logs/log.txt
 	echo "" >> /root/logs/log.txt
 	/bin/bash /root/users.sh
+    clear
+    echo "Ejecución completa"
 	flaw6
 }
 
@@ -112,8 +114,8 @@ userdel() {
     read user2del
     grep "$user2del" /etc/passwd > /dev/null
     if [ $? -eq 0 ]; then
-        userdel -r $user2del
-        echo "Elimino el grupo $user2del" >> /root/logs/log.txt
+        userdel -r$user2del
+        echo "Elimino el usuario $user2del" >> /root/logs/log.txt
         echo "" >> /root/logs/log.txt
         clear
         echo "Operación exitosa: Eliminar usuario"
@@ -125,11 +127,11 @@ userdel() {
 }
 
 groupdel() {
-    echo "Ingrese el usuario a borrar:"
+    echo "Ingrese el grupo a borrar:"
     read group2del
     grep "$group2del" /etc/group > /dev/null
     if [ $? -eq 0 ]; then
-        userdel -r $user2del
+        groupdel$group2del
         echo "Elimino el grupo $group2del" >> /root/logs/log.txt
         echo "" >> /root/logs/log.txt
         clear
@@ -148,7 +150,7 @@ chgpswd() {
     grep "$puser" /etc/group > /dev/null
     if [ $? -eq 0 ]; then
         echo "Ingrese la contraseña para el usuario:"
-        read userp
+        read -s userp
         echo $puser:$userp | chpasswd
         echo "Cambio la contraseña de $puser" >> /root/logs/log.txt
         echo "" >> /root/logs/log.txt
@@ -173,6 +175,7 @@ userc=(
 "Eliminar usuario"
 "Eliminar grupo"
 "Cambiar contraseña de usuario"
+"Salir"
 )
 
 select uchoice in "${userc[@]}"
@@ -182,34 +185,46 @@ case $uchoice in
     "Creación de los usuarios por defecto.")
         clear
         initusercreation
+        flaw6
         ;;
     "Agregar usuario de oficina.")
         clear
         addofficeuser
+        flaw6
         ;;
     "Agregar usuario administrativo (Empresa).")
         clear
         addadminuser
+        flaw6
         ;;
     "Agregar usuario de soporte (UNIT).")
         clear
         addunituser
+        flaw6
         ;;
     "Agregar grupo.")
         clear
         addgroup
+        flaw6
         ;;
     "Eliminar usuario")
         clear
         userdel
+        flaw6
         ;;
     "Eliminar grupo")
         clear
         groupdel
+        flaw6
         ;;
     "Cambiar contraseña de usuario")
         clear
         chgpasswd
+        flaw6
+        ;;
+    "Salir")
+        clear
+        break
         ;;
     *)
         clear
