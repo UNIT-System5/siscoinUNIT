@@ -18,7 +18,7 @@ initusercreation() {
 	/bin/bash /root/users.sh
     clear
     echo "Ejecución completa"
-	flaw6
+	
 }
 
 addofficeuser() {
@@ -42,7 +42,7 @@ addofficeuser() {
 		clear
 	echo "Operación exitosa: Crear usuario de oficina"
 	fi
-	flaw6
+	
 }
 
 addadminuser() {
@@ -65,7 +65,7 @@ addadminuser() {
 		clear
 		echo "Operación exitosa: Crear usuario administrativo"
 	fi 
-	flaw6
+	
 }
 
 addunituser() {
@@ -88,7 +88,7 @@ addunituser() {
 	clear
 	echo "Operación exitosa: Crear usuario de soporte"
 	fi
-	flaw6
+	
 }
 
 addgroup() {
@@ -106,15 +106,15 @@ addgroup() {
 		clear
 		echo "Operación exitosa: añadir grupo"
 	fi
-	flaw6
+	
 }
 
-userdel() {
+userdelete() {
     echo "Ingrese el usuario a borrar:"
     read user2del
     grep "$user2del" /etc/passwd > /dev/null
     if [ $? -eq 0 ]; then
-        userdel -r$user2del
+        userdel -r $user2del
         echo "Elimino el usuario $user2del" >> /root/logs/log.txt
         echo "" >> /root/logs/log.txt
         clear
@@ -123,10 +123,10 @@ userdel() {
         echo "Error"
         echo "El usuario parece no existir"
     fi
-    flaw6
+    
 }
 
-groupdel() {
+groupdelete() {
     echo "Ingrese el grupo a borrar:"
     read group2del
     grep "$group2del" /etc/group > /dev/null
@@ -141,7 +141,7 @@ groupdel() {
         echo "Error"
         echo "El grupo parece no existir"
     fi
-    flaw6
+    
 }
 
 chgpswd() {
@@ -161,7 +161,7 @@ chgpswd() {
         echo "Error"
         echo "El usuario parece no existir"
     fi
-    flaw6
+    
 }
 
 echo "¿Qué desea hacer?"
@@ -209,12 +209,12 @@ case $uchoice in
         ;;
     "Eliminar usuario")
         clear
-        userdel
+        userdelete
         flaw6
         ;;
     "Eliminar grupo")
         clear
-        groupdel
+        groupdelete
         flaw6
         ;;
     "Cambiar contraseña de usuario")
