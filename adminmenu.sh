@@ -6,14 +6,6 @@ echo "Accedio al menu administrativo" >> /root/logs/log.txt
 echo "" >> /root/logs/log.txt
 
 
-initusercreation() {
-	logname >> /root/logs/log.txt
-	date >> /root/logs/log.txt
-	echo "Ejecuto el script de creacion inicial de usuarios" >> /root/logs/log.txt
-	echo "" >> /root/logs/log.txt
-	/bin/bash /root/users.sh
-	flaw
-}
 
 backupdb() {
 	logname >> /root/logs/log.txt
@@ -45,93 +37,8 @@ networkctl() {
 	flaw 
 }
 
-addofficeuser() {
-	echo "Ingrese el nombre para el nuevo usuario:"
-	read usero
-	grep "$usero" /etc/passwd >/dev/null
-	if [ $? -eq 0 ]; then
-		echo "El usuario ya existe"
-		exit
-	else
-		useradd -m "$usero"
-	sleep 1
-	echo "Ingrese la contraseña para el nuevo usuario"
-	read -s pswdo
-	echo "$usero:$pswdo" | chpasswd
-	sleep 1
-	logname >> /root/logs/log.txt
-        date >> /root/logs/log.txt
-	echo "Creo un usuario de oficina" >> /root/logs/log.txt
-        echo "" >> /root/logs/log.txt
-		clear
-	echo "Operación exitosa: Crear usuario de oficina"
-	fi
-	flaw
-}
 
-addadminuser() {
-	echo "Ingrese el nombre para el nuevo usuario:"
-	read usera
-	grep "$usera" /etc/passwd >/dev/null
-	if [ $? -eq 0 ]; then
-		echo "El usuario ya existe"
-	else
-		useradd -m -g empresa "$usera"
-	sleep 1
-	echo "Ingrese la contraseña para el nuevo usuario"
-	read -s pswda
-	echo "$usera:$pswda" | chpasswd
-	sleep 1
-	logname >> /root/logs/log.txt
-        date >> /root/logs/log.txt
-        echo "Creo un usuario administrativo" >> /root/logs/log.txt
-        echo "" >> /root/logs/log.txt
-		clear
-		echo "Operación exitosa: Crear usuario administrativo"
-	fi 
-	flaw
-}
 
-addunituser() {
-	echo "Ingrese el nombre para el nuevo usuario:"
-	read useru
-	grep "$useru" /etc/passwd >/dev/null
-	if [ $? -eq 0 ]; then
-		echo "El usuario ya existe"
-	else
-		useradd -m -g unit "$useru"
-	sleep 1 
-	echo "Ingrese la contraseña para el nuevo usuario"
-	read -s pswdu
-	echo "$useru:$pswdu" | chpasswd
-	sleep 1
-	logname >> /root/logs/log.txt
-    date >> /root/logs/log.txt
-    echo "Creo un usuario del grupo UNIT" >> /root/logs/log.txt
-    echo "" >> /root/logs/log.txt
-	clear
-	echo "Operación exitosa: Crear usuario de soporte"
-	fi
-	flaw
-}
-
-addgroup() {
-	echo "Ingrese nombre para el nuevo grupo:"
-	read ngroup
-	grep "$ngroup" /etc/group >/dev/null
-	if [ $? -eq 0 ]; then
-		echo "El grupo ya existe"
-	else
-		groupadd "$ngroup"
-		logname >> /root/logs/log.txt
-        date >> /root/logs/log.txt
-        echo "Creo un grupo" >> /root/logs/log.txt
-        echo "" >> /root/logs/log.txt
-		clear
-		echo "Operación exitosa: añadir grupo"
-	fi
-	flaw
-}
 
 homebackup() {
 	logname >> /root/logs/log.txt
@@ -148,7 +55,7 @@ remote_backup() {
     date >> /root/logs/log.txt
     echo "Manualmente realizo un backup al servidor remoto" >> /root/logs/log.txt
     echo "Resultado de la operación: " >> /root/logs/log.txt
-	/bin/bash /root/remote_backup.sh 2>> /root/logs/log.txt
+	/bin/bash /root/remote_backupv2.sh 2>> /root/logs/log.txt
 	echo "" >> /root/logs/log.txt
 	flaw
 }
@@ -191,7 +98,7 @@ restore_remote() {
     echo "Descargo backups del servidor remoto" >> /root/logs/log.txt
     echo "Resultado de la operación: " >> /root/logs/log.txt
 	#/bin/bash /root/restore_remote.sh 2>> /root/logs/log.txt
-	/bin/bash /root/restore_ctl.sh 2>> /root/logs/log.txt
+	/bin/bash /root/restore_ctl.sh #2>> /root/logs/log.txt
 	echo "" >> /root/logs/log.txt
 	flaw
 }
@@ -212,9 +119,14 @@ backup_pol() {
 	flaw
 }
 
+user_ctl() {
+	/bin/bash /root/user_ctl.sh
+	flaw
+}
+
 flaw() {
 	echo "---VOLVIENDO AL MENU---"
-	for i in {0..18}
+	for i in {0..14}
 	do
 		g=$i
 		((g++))
@@ -224,16 +136,11 @@ flaw() {
 
  
 PS3="Seleccione lo que desea hacer, ingresando el correspondiente número: "
-choices=(
-"Creación de los usuarios por defecto." 
+choices=( 
 "Crear respaldo de la base de datos." 
 "Restaurar base de datos." 
 "Control de Cron."
 "Control de Red."
-"Agregar usuario de oficina."
-"Agregar usuario administrativo (Empresa)."
-"Agregar usuario de soporte (UNIT)."
-"Agregar grupo."
 "Backup de la carpeta personal."
 "Backup de archivos de configuración."
 "Backup a servidor remoto."
@@ -248,9 +155,9 @@ choices=(
 select choice in "${choices[@]}"
 do 
 case $choice in
-	"Creación de los usuarios por defecto.")
+	"Control de usuarios.")
 		clear
-		initusercreation
+		user_ctl
 		;;
 	"Crear respaldo de la base de datos.")
 		clear
@@ -267,22 +174,6 @@ case $choice in
 	"Control de Red.")
 		clear
 		networkctl
-		;;
-	"Agregar usuario de oficina.")
-		clear
-		addofficeuser
-		;;
-	"Agregar usuario administrativo (Empresa).")
-		clear
-		addadminuser
-		;;
-	"Agregar usuario de soporte (UNIT).")
-		clear
-		addunituser
-		;;
-	"Agregar grupo.")
-		clear
-		addgroup
 		;;
 
 	"Backup de la carpeta personal.") 

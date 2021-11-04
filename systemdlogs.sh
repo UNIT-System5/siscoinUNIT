@@ -56,13 +56,13 @@ customtime() {
 		1)
 			echo "Ingrese cuantos minutos atras desea ver"
 			read timemin
-			journalctl --since "$timemin ago"
+			journalctl --since "$timemin minutes ago"
 			;;
 
 		2)
 			echo "Ingrese cuantas horas atras desea ver"
 			read timehr
-			journalctl --since "$timehr ago"
+			journalctl --since "$timehr hours ago"
 			;;
 
 		*) 
