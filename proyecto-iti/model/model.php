@@ -413,7 +413,6 @@
             INNER JOIN usuario ON realiza_soli.fk_user = usuario.id_user
             INNER JOIN tipo_equipamiento ON realiza_soli.fk_tipo = tipo_equipamiento.id_tipo
             INNER JOIN oficina ON usuario.fk_ofic = oficina.id_lugar
-            LEFT JOIN stock_all ON stock_all.fk_tipo = realiza_soli.fk_tipo
             WHERE realiza_soli.estado_soli = 'Pendiente Info'
             ORDER BY realiza_soli.id_soli ASC;";
 
@@ -439,6 +438,14 @@
             }
 
             return $this -> lEquipFO;
+        }
+
+        public function updateSoli($user, $password, $id, $report) {
+            $update = "UPDATE realiza_soli SET
+            reporte_final = '$report'
+            WHERE id_soli = '$id';";
+
+            $updateSol = DBUserConnect::sqlCU($user, $password) -> query($update);
         }
 
         public function listFP($user, $password) {
