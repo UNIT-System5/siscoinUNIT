@@ -457,15 +457,15 @@ INSERT INTO reporta_fallo (
     'Pendiente Info', 4, 2
 );
 
-DROP USER 'login'@'%';
+DROP USER IF EXISTS 'login'@'%';
 
-DROP USER 'director'@'%';
-DROP USER 'informatica'@'%';
-DROP USER 'subA'@'%';
-DROP USER 'subB'@'%';
-DROP USER 'oficina'@'%';
-DROP USER 'compras'@'%';
-DROP USER 'auditoria'@'%';
+DROP USER IF EXISTS 'director'@'%';
+DROP USER IF EXISTS 'informatica'@'%';
+DROP USER IF EXISTS 'subA'@'%';
+DROP USER IF EXISTS 'subB'@'%';
+DROP USER IF EXISTS 'oficina'@'%';
+DROP USER IF EXISTS 'compras'@'%';
+DROP USER IF EXISTS 'auditoria'@'%';
 
 CREATE USER 'login'@'%' IDENTIFIED BY 'monitor.2701';
 
