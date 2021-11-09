@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS siscoin_unit;
 CREATE DATABASE siscoin_unit;
 USE siscoin_unit;
 
@@ -152,8 +153,10 @@ CREATE TABLE realiza_soli (
     reporte_final varchar(240) CHARSET utf8,
     fk_tipo int(2),
     fk_user int(7) NOT NULL,
+    fk_soli int,
     FOREIGN KEY(fk_tipo) REFERENCES tipo_equipamiento(id_tipo),
-    FOREIGN KEY(fk_user) REFERENCES usuario(id_user)
+    FOREIGN KEY(fk_user) REFERENCES usuario(id_user),
+    FOREIGN KEY(fk_soli) REFERENCES realiza_soli(id_soli)
 ) ENGINE=INNODB;
 
 CREATE TABLE notifs (
@@ -341,6 +344,10 @@ INSERT INTO equipamiento (
     'Componente', 'Oficina 5', 'Instalado', 4, 1, 22, 5, 3
 );
 
+INSERT INTO equip_estado (fecha_inic_estado, fecha_fin_estado, fk_estado, fk_equip)
+VALUES (NOW(), NOW(), 2, 1), (NOW(), NULL, 4, 1), (NOW(), NOW(), 2, 2), (NOW(), NULL, 4, 2),
+(NOW(), NULL, 2, 3), (NOW(), NOW(), 2, 4), (NOW(), NULL, 4, 4), (NOW(), NOW(), 2, 5), (NOW(), NULL, 4, 5);
+
 INSERT INTO usuario (
     grupo_user, mail_user, pass_user,
     nom_comp_user, notify, fk_ofic, fk_grupo
@@ -389,35 +396,35 @@ INSERT INTO realiza_soli (
     titulo_soli, desc_soli, estado_soli,
     fecha_ini_soli, fk_tipo, fk_user
 ) VALUES (
-    'Solicitud 1', 'Descripción', 'Pendiente SubA',
-    DATE '2020-01-01', 1, 4
+    '5 Monitor', 'Descripción', 'Pendiente SubA',
+    DATE '2020-01-01', 1, 5
 ),
 (
-    'Solicitud 2', 'Descripción', 'Pendiente SubA',
-    DATE '2020-02-02', 5, 3
+    '30 Tarjeta de Red', 'Descripción', 'Pendiente SubA',
+    DATE '2020-02-02', 5, 5
 ),
 (
-    'Solicitud 3', 'Descripción', 'Pendiente SubA',
+    '2 Fuente de Alimentación', 'Descripción', 'Pendiente SubA',
     DATE '2020-03-03', 18, 5
 ),
 (
-    'Solicitud 4', 'Descripción', 'Pendiente SubA',
-    DATE '2020-04-04', 10, 2
+    '25 Procesador', 'Descripción', 'Pendiente SubA',
+    DATE '2020-04-04', 10, 5
 ),
 (
-    'Solicitud 5', 'Descripción', 'Pendiente SubA',
-    DATE '2020-05-05', 9, 1
+    '3 SSD', 'Descripción', 'Pendiente SubA',
+    DATE '2020-05-05', 9, 5
 ),
 (
-    'Solicitud 6', 'Descripción', 'Pendiente SubA',
-    DATE '2020-06-06', 7, 4
+    '8 Memoria RAM', 'Descripción', 'Pendiente SubA',
+    DATE '2020-06-06', 7, 5
 ),
 (
-    'Solicitud 7', 'Descripción', 'Pendiente SubA',
-    DATE '2020-07-07', 16, 3
+    '5 Cable HDMI', 'Descripción', 'Pendiente SubA',
+    DATE '2020-07-07', 16, 5
 ),
 (
-    'Solicitud 8', 'Lorem ipsum dolor sit amet,
+    '30 Monitor', 'Lorem ipsum dolor sit amet,
     consectetur adipisicing elit. Harum sint deleniti
     eaque, delectus aut omnis fugit accusantium iusto
     esse quos nostrum dolor. Est similique doloremque
@@ -425,7 +432,7 @@ INSERT INTO realiza_soli (
     DATE '2020-08-08', 1, 1
 ),
 (
-    'Solicitud 9', 'Lorem ipsum dolor sit amet,
+    '3 Tarjeta de Red', 'Lorem ipsum dolor sit amet,
     consectetur adipisicing elit. Harum sint deleniti
     eaque, delectus aut omnis fugit accusantium iusto
     esse quos nostrum dolor. Est similique doloremque
@@ -433,7 +440,7 @@ INSERT INTO realiza_soli (
     DATE '2020-09-09', 5, 2
 ),
 (
-    'Solicitud 10', 'Lorem ipsum dolor sit amet,
+    '20 Gabinete', 'Lorem ipsum dolor sit amet,
     consectetur adipisicing elit. Harum sint deleniti
     eaque, delectus aut omnis fugit accusantium iusto
     esse quos nostrum dolor. Est similique doloremque
@@ -487,6 +494,7 @@ GRANT SELECT, UPDATE ON siscoin_unit.realiza_soli TO 'subA'@'%';
 GRANT SELECT, INSERT, UPDATE ON siscoin_unit.reporta_fallo TO 'subA'@'%';
 GRANT SELECT ON siscoin_unit.estado TO 'subA'@'%';
 GRANT SELECT ON siscoin_unit.est_sucesor TO 'subA'@'%';
+GRANT SELECT ON siscoin_unit.tipo_equipamiento TO 'subA'@'%';
 GRANT SELECT ON siscoin_unit.equipamiento TO 'subA'@'%';
 GRANT SELECT ON siscoin_unit.instala_cambia TO 'subA'@'%';
 GRANT SELECT ON siscoin_unit.oficina TO 'subA'@'%';
