@@ -49,7 +49,7 @@ critical() {
 	clear
 }
 
-status() {
+statusc() {
 	echo "Ingrese nombre del servicio a revisar"
 	read srv
 	journalctl -t $srv
@@ -152,7 +152,7 @@ case $sysdce in
 		;;
 	"Log de un servicio/daemon")
 		clear
-		status
+		statusc
 		flaw2
 		;;
 	"Log de minutos/horas antes de ahora")

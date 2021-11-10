@@ -21,9 +21,13 @@ echo "¿Qué logs desea ver?"
 	case $logch in
 		"Logs de operaciones y errores.")
 			less /root/logs/log.txt
+			clear
+			flaw5
 			;;
 		"Logs de transacciones efectuadas por rsync.")
 			less /root/logs/rsynclog.txt
+			clear
+			flaw5
 			;;
 		"Volver al menú.")
 			clear 
@@ -31,7 +35,7 @@ echo "¿Qué logs desea ver?"
 			;;
 		*)
             clear
-			echo "Ha ingresado un valor inválida..."
+			echo "Ha ingresado un valor inválido..."
             flaw5
 			;;
 	esac

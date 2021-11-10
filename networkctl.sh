@@ -23,12 +23,18 @@ do
 	case $networkctlse in
                 "Reiniciar NetworkManager")
 			systemctl restart NetworkManager.service
+                        clear
+                        flaw4
                         ;;
                 "Habilitar el firewall")
 			ufw enable
+                        clear
+                        flaw4
                         ;;
                 "Deshabilitar el firewall")
 			ufw disable
+                        clear
+                        flaw4
                         ;;
 
 

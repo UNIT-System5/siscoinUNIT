@@ -22,12 +22,18 @@ do
 	case $cronctlse in
                 "Habilitar Cron")
                         systemctl enable --now cronie.service
+                        clear
+                        flaw3
                         ;;
                 "Deshabilitar Cron")
                         systemctl disable --now cronie.service
+                        clear
+                        flaw3
                         ;;
                 "Reiniciar Cron")
                         systemctl restart cronie.service
+                        clear
+                        flaw3
                         ;;
                 "Salir")
                         clear
