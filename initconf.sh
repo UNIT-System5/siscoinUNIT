@@ -85,6 +85,15 @@ echo "
 unix_socket=OFF
 " >> /etc/my.cnf
 
+# Evitando que phpMyAdmin se queje de la cache y la passphrase...
+
+echo "
+\$cfg['TempDir'] = '/tmp/phpmyadmin';
+" >> /usr/share/webapps/phpMyAdmin/config.inc.php
+
+echo "
+\$cfg['blowfish_secret'] = '69909365658635084776338496446056';
+" >> /usr/share/webapps/phpMyAdmin/config.inc.php
 
 # Haciendo el deploy de la página...
 mkdir /root/site 
