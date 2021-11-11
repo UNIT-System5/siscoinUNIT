@@ -28,9 +28,9 @@ echo '
 0 19 * * * root /root/backup_conf.sh
 # Se manda todo lo que esta en /mnt/backup_device al servidor de backup remoto,
 # con un retraso de 15 minutos respecto a la ejecucion del "backup" local.
-15 6 * * * root /root/remote_backup.sh
+15 6 * * * root /root/remote_backupv2.sh
 # Lo mismo, pero la 2da iteracion diaria.
-15 19 * * * root /root/remote_backup.sh
+15 19 * * * root /root/remote_backupv2.sh
 # Hace un backup no incremental del directorio home. DEPRECADO
 # 0 6 * * 0 root /root/fullhome.sh
 # Hace un backup no incremental de /etc. DEPRECADO
