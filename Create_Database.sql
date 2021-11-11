@@ -502,6 +502,7 @@ GRANT SELECT ON siscoin_unit.usuario TO 'subA'@'%';
 
 GRANT SELECT, UPDATE ON siscoin_unit.realiza_soli TO 'subB'@'%';
 GRANT SELECT ON siscoin_unit.equipamiento TO 'subB'@'%';
+GRANT SELECT ON siscoin_unit.tipo_equipamiento TO 'subB'@'%';
 GRANT SELECT ON siscoin_unit.instala_cambia TO 'subB'@'%';
 GRANT SELECT ON siscoin_unit.oficina TO 'subB'@'%';
 GRANT SELECT ON siscoin_unit.grupo TO 'subB'@'%';
@@ -528,6 +529,9 @@ GRANT SELECT ON siscoin_unit.oficina TO 'compras'@'%';
 GRANT SELECT ON siscoin_unit.usuario TO 'compras'@'%';
 
 GRANT SELECT ON siscoin_unit.provee TO 'auditoria'@'%';
+GRANT SELECT ON siscoin_unit.realiza_soli TO 'auditoria'@'%';
+GRANT SELECT ON siscoin_unit.tipo_equipamiento TO 'auditoria'@'%';
+GRANT SELECT ON siscoin_unit.proveedor TO 'auditoria'@'%';
 GRANT SELECT ON siscoin_unit.equipamiento TO 'auditoria'@'%';
 GRANT SELECT ON siscoin_unit.instala_cambia TO 'auditoria'@'%';
 GRANT SELECT ON siscoin_unit.oficina TO 'auditoria'@'%';
