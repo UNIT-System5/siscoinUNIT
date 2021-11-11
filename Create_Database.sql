@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS siscoin_unit;
 CREATE DATABASE siscoin_unit;
 USE siscoin_unit;
 
@@ -135,6 +136,7 @@ CREATE TABLE reporta_fallo (
     equip_fallo varchar(40) CHARSET utf8 NOT NULL,
     desc_fallo varchar(240) CHARSET utf8 NOT NULL,
     estado_fallo varchar(20) CHARSET utf8 NOT NULL,
+    reporte_final varchar(240) CHARSET utf8,
     fk_equip int NOT NULL,
     fk_user int(7) NOT NULL,
     FOREIGN KEY(fk_equip) REFERENCES equipamiento(id_equip),
@@ -148,10 +150,13 @@ CREATE TABLE realiza_soli (
     estado_soli varchar(20) CHARSET utf8 NOT NULL,
     fecha_ini_soli date NOT NULL,
     fecha_fin_soli date,
+    reporte_final varchar(240) CHARSET utf8,
     fk_tipo int(2),
     fk_user int(7) NOT NULL,
+    fk_soli int,
     FOREIGN KEY(fk_tipo) REFERENCES tipo_equipamiento(id_tipo),
-    FOREIGN KEY(fk_user) REFERENCES usuario(id_user)
+    FOREIGN KEY(fk_user) REFERENCES usuario(id_user),
+    FOREIGN KEY(fk_soli) REFERENCES realiza_soli(id_soli)
 ) ENGINE=INNODB;
 
 CREATE TABLE notifs (
@@ -198,39 +203,74 @@ INSERT INTO oficina (
     desc_lugar, grupo_lugar, dir_lugar, depart_lugar,
     ciudad_lugar, tel_lugar, fk_grupo, fk_dep
 ) VALUES (
-    "Oficina Número 1", "Oficina", "Calle Random 1",
+    "Oficina 1", "Oficina", "Calle Random 1",
     "Montevideo", "Montevideo", 094132471,
     5, 1
 ),
 (
-    "Oficina Número 2", "Oficina", "Calle Random 2",
+    "Oficina 2", "Oficina", "Calle Random 2",
     "Montevideo", "Montevideo", 091356985,
     5, 1
 ),
 (
-    "Oficina Número 3", "Oficina", "Calle Random 3",
+    "Oficina 3", "Oficina", "Calle Random 3",
     "Montevideo", "Montevideo", 092358985,
     5, 1
 ),
 (
-    "Oficina Número 4", "Oficina", "Calle Random 4",
+    "Oficina 4", "Oficina", "Calle Random 4",
     "Montevideo", "Montevideo", 095355685,
     5, 1
 ),
 (
-    "Oficina Número 5", "Oficina", "Calle Random 5",
+    "Oficina 5", "Oficina", "Calle Random 5",
     "Montevideo", "Montevideo", 097356990,
     5, 1
 ),
 (
-    "Oficina Número 6", "Oficina", "Calle Random 6",
+    "Oficina 6", "Oficina", "Calle Random 6",
     "Montevideo", "Montevideo", 099344985,
     5, 1
 ),
 (
-    "Oficina Número 7", "Oficina", "Calle Random 7",
+    "Oficina 7", "Oficina", "Calle Random 7",
     "Montevideo", "Montevideo", 091234567,
     5, 1
+),
+(
+    "Oficina 8", "Director", "Calle Random 8",
+    "Montevideo", "Montevideo", 091234567,
+    1, 1
+),
+(
+    "Oficina 9", "Informática", "Calle Random 9",
+    "Montevideo", "Montevideo", 091234567,
+    2, 1
+),
+(
+    "Oficina 10", "SubB", "Calle Random 10",
+    "Montevideo", "Montevideo", 091234567,
+    4, 1
+),
+(
+    "Oficina 11", "Compras", "Calle Random 11",
+    "Montevideo", "Montevideo", 091234567,
+    6, 1
+),
+(
+    "Oficina 12", "Compras", "Calle Random 12",
+    "Montevideo", "Montevideo", 091234567,
+    6, 1
+),
+(
+    "Oficina 13", "SubA", "Calle Random 13",
+    "Tacuarembó", "Tacuarembó", 091234567,
+    3, 15
+), 
+(
+    "Oficina 14", "Auditoría", "Calle Random 14",
+    "Colonia", "Colonia del Sacramento", 091234567,
+    7, 5
 );
 
 INSERT INTO proveedor (
@@ -287,7 +327,9 @@ VALUES
     ("Intel"), ("AMD"), ("NVIDIA"), ("Amazon"), ("Microsoft"),
     ("HP"), ("ASUS"), ("Lenovo"), ("Acer"), ("DELL"), ("Canon"),
     ("Epson"), ("Phillips"), ("Sony"), ("Broadcom"), ("Realtek"),
-    ("ZTE"), ("Samsung"), ("Huawei"), ("IBM"), ("Apple"), ("ADATA")
+    ("ZTE"), ("Samsung"), ("Huawei"), ("IBM"), ("Apple"), ("ADATA"),
+    ("MSI"), ("VIA"), ("AOC"), ("Panavox"), ("Xiaomi"), ("Kingston"),
+    ("SanDisk"), ("Corsair"), ("Crucial"), ("SeaGate"), ("Western Digital")
 ;
 
 INSERT INTO equipamiento (
@@ -308,7 +350,19 @@ INSERT INTO equipamiento (
 (
     DATE '2020-04-04', 10, 'Tarjeta de Red', 'Realtek',
     'Componente', 'Oficina 2', 'Instalado', 4, 5, 20, 2, 3
+),
+(
+    DATE '2020-01-01', 12, 'Monitor', 'Samsung',
+    'Componente', 'Oficina 5', 'Instalado', 4, 1, 22, 5, 3
 );
+
+INSERT INTO equip_estado (fecha_inic_estado, fecha_fin_estado, fk_estado, fk_equip)
+VALUES (NOW(), NOW(), 2, 1), (NOW(), NULL, 4, 1), (NOW(), NOW(), 2, 2), (NOW(), NULL, 4, 2),
+(NOW(), NULL, 2, 3), (NOW(), NOW(), 2, 4), (NOW(), NULL, 4, 4), (NOW(), NOW(), 2, 5), (NOW(), NULL, 4, 5);
+
+INSERT INTO instala_cambia (tipo_accion, desc_inst_cambio, fecha_inst_cambio, fk_equip, fk_ofic)
+VALUES ('Instalación', 'Description', NOW(), 1, 5), ('Instalación', 'Description', NOW(), 2, 3),
+('Instalación', 'Description', NOW(), 4, 2), ('Instalación', 'Description', NOW(), 5, 5);
 
 INSERT INTO usuario (
     grupo_user, mail_user, pass_user,
@@ -316,22 +370,22 @@ INSERT INTO usuario (
 ) VALUES (
     "Director", "director@gmail.com",
     "$2y$10$7mrHFVxutyrBGlOEpDAtXO6HBasVgdEjUQJGsCzZDBhVG/mj7YaoG",
-    "Director Prueba", false, 2, 1
+    "Director Prueba", false, 8, 1
 ),
 (
     "Informática", "informatica@gmail.com",
     "$2y$10$gEAGR575J8j486RN/i5RAeDcznz8Uf4Ne323Vr/kVCS..gsWq5Key",
-    "Informática Prueba", false, 2, 2
+    "Informática Prueba", false, 9, 2
 ),
 (
     "Subdirección A", "subA@gmail.com",
     "$2y$10$rl1L6K9bw279xebuTA7C4uRFayq.HBvkfOp3kzZdY0cPrbGiPY3mu",
-    "Subdirección A Prueba", false, 3, 3
+    "Subdirección A Prueba", false, 13, 3
 ),
 (
     "Subdirección B", "subB@gmail.com",
     "$2y$10$7O1BKIBCBAnLDbt7kK8z2OFAJjAKsjuyPu7mdXIZgAMUfzAv/jahy",
-    "Subdirección B Prueba", false, 1, 4
+    "Subdirección B Prueba", false, 10, 4
 ),
 (
     "Oficina", "oficina@gmail.com",
@@ -341,44 +395,85 @@ INSERT INTO usuario (
 (
     "Compras", "compras@gmail.com",
     "$2y$10$cOzj1yhAEMHoExDEvIqHxe.KgZPA7zwOVBk7W1wP9WHa5/SU5Xmiq",
-    "Compras Prueba", false, 1, 6
+    "Compras Prueba", false, 11, 6
 ),
 (
     "Auditoría", "auditoria@gmail.com",
     "$2y$10$ZnokG31469ORzcdk78/2w.8drgkrLp9zJhPBhzlupM66cxWCTupaG",
-    "Auditoría Prueba", false,  2, 7
+    "Auditoría Prueba", false,  14, 7
+),
+(
+    "Director", "glportog@gmail.com",
+    "$2y$10$h7Is8WNzVsEqnl53cZAqq.7z8RziButfjVmtJEUpWirFJNx54Jjyy",
+    "Gian Luca Porto", false, 8, 1
 );
+
+INSERT INTO asign_usuario (fecha_asign, fk_user, fk_ofic)
+VALUES (NOW(), 1, 8), (NOW(), 2, 9), (NOW(), 3, 13), (NOW(), 4, 10),
+(NOW(), 5, 5), (NOW(), 6, 11), (NOW(), 7, 14), (NOW(), 8, 8);
 
 INSERT INTO realiza_soli (
     titulo_soli, desc_soli, estado_soli,
     fecha_ini_soli, fk_tipo, fk_user
 ) VALUES (
-    'Solicitud 1', 'Descripción', 'Pendiente SubA',
-    DATE '2020-01-01', 1, 4
+    '5 Monitor', 'Descripción', 'Pendiente SubA',
+    DATE '2020-01-01', 1, 5
 ),
 (
-    'Solicitud 2', 'Descripción', 'Pendiente SubA',
-    DATE '2020-02-02', 5, 3
+    '30 Tarjeta de Red', 'Descripción', 'Pendiente SubA',
+    DATE '2020-02-02', 5, 5
 ),
 (
-    'Solicitud 3', 'Descripción', 'Pendiente SubA',
+    '2 Fuente de Alimentación', 'Descripción', 'Pendiente SubA',
     DATE '2020-03-03', 18, 5
 ),
 (
-    'Solicitud 4', 'Descripción', 'Pendiente SubA',
-    DATE '2020-04-04', 10, 2
+    '25 Procesador', 'Descripción', 'Pendiente SubA',
+    DATE '2020-04-04', 10, 5
 ),
 (
-    'Solicitud 5', 'Descripción', 'Pendiente SubA',
-    DATE '2020-05-05', 9, 1
+    '3 SSD', 'Descripción', 'Pendiente SubA',
+    DATE '2020-05-05', 9, 5
 ),
 (
-    'Solicitud 6', 'Descripción', 'Pendiente SubA',
-    DATE '2020-06-06', 7, 4
+    '8 Memoria RAM', 'Descripción', 'Pendiente SubA',
+    DATE '2020-06-06', 7, 5
 ),
 (
-    'Solicitud 7', 'Descripción', 'Pendiente SubA',
-    DATE '2020-07-07', 16, 3
+    '5 Cable HDMI', 'Descripción', 'Pendiente SubA',
+    DATE '2020-07-07', 16, 5
+),
+(
+    '30 Monitor', 'Lorem ipsum dolor sit amet,
+    consectetur adipisicing elit. Harum sint deleniti
+    eaque, delectus aut omnis fugit accusantium iusto
+    esse quos nostrum dolor. Est similique doloremque
+    molestias accusantium ea quo temporibus!', 'Pendiente SubB',
+    DATE '2020-08-08', 1, 1
+),
+(
+    '3 Tarjeta de Red', 'Lorem ipsum dolor sit amet,
+    consectetur adipisicing elit. Harum sint deleniti
+    eaque, delectus aut omnis fugit accusantium iusto
+    esse quos nostrum dolor. Est similique doloremque
+    molestias accusantium ea quo temporibus!', 'Pendiente SubB',
+    DATE '2020-09-09', 5, 2
+),
+(
+    '20 Gabinete', 'Lorem ipsum dolor sit amet,
+    consectetur adipisicing elit. Harum sint deleniti
+    eaque, delectus aut omnis fugit accusantium iusto
+    esse quos nostrum dolor. Est similique doloremque
+    molestias accusantium ea quo temporibus!', 'Pendiente Compras',
+    DATE '2020-10-10', 3, 2
+),
+(
+    '20 Monitor', 'Lorem ipsum dolor sit amet,
+    consectetur adipisicing elit. Harum sint deleniti
+    eaque, delectus aut omnis fugit accusantium iusto
+    esse quos nostrum dolor. Est similique doloremque
+    molestias accusantium ea quo temporibus!', 'Aceptada',
+    DATE '2020-07-12', 3, 2
 );
 
 INSERT INTO reporta_fallo (
@@ -386,17 +481,26 @@ INSERT INTO reporta_fallo (
     estado_fallo, fk_equip, fk_user
 ) VALUES (
     DATE '2020-01-02', 'Teclado', 'Descripción',
-    'Pendiente SubA', 1, 5
+    'Pendiente Info', 1, 5
 ),
 (
     DATE '2020-02-03', 'Tarjeta Gráfica', 'Descripción',
-    'Pendiente SubA', 2, 3
+    'Pendiente Info', 2, 5
 ),
 (
     DATE '2020-02-03', 'Monitor', 'Descripción',
-    'Pendiente SubA', 4, 2
+    'Pendiente Info', 4, 5
 );
 
+DROP USER IF EXISTS 'login'@'%';
+
+DROP USER IF EXISTS 'director'@'%';
+DROP USER IF EXISTS 'informatica'@'%';
+DROP USER IF EXISTS 'subA'@'%';
+DROP USER IF EXISTS 'subB'@'%';
+DROP USER IF EXISTS 'oficina'@'%';
+DROP USER IF EXISTS 'compras'@'%';
+DROP USER IF EXISTS 'auditoria'@'%';
 
 CREATE USER 'login'@'%' IDENTIFIED BY 'monitor.2701';
 
@@ -418,6 +522,7 @@ GRANT SELECT, UPDATE ON siscoin_unit.realiza_soli TO 'subA'@'%';
 GRANT SELECT, INSERT, UPDATE ON siscoin_unit.reporta_fallo TO 'subA'@'%';
 GRANT SELECT ON siscoin_unit.estado TO 'subA'@'%';
 GRANT SELECT ON siscoin_unit.est_sucesor TO 'subA'@'%';
+GRANT SELECT ON siscoin_unit.tipo_equipamiento TO 'subA'@'%';
 GRANT SELECT ON siscoin_unit.equipamiento TO 'subA'@'%';
 GRANT SELECT ON siscoin_unit.instala_cambia TO 'subA'@'%';
 GRANT SELECT ON siscoin_unit.oficina TO 'subA'@'%';
@@ -425,13 +530,19 @@ GRANT SELECT ON siscoin_unit.usuario TO 'subA'@'%';
 
 GRANT SELECT, UPDATE ON siscoin_unit.realiza_soli TO 'subB'@'%';
 GRANT SELECT ON siscoin_unit.equipamiento TO 'subB'@'%';
+GRANT SELECT ON siscoin_unit.tipo_equipamiento TO 'subB'@'%';
 GRANT SELECT ON siscoin_unit.instala_cambia TO 'subB'@'%';
 GRANT SELECT ON siscoin_unit.oficina TO 'subB'@'%';
+GRANT SELECT ON siscoin_unit.grupo TO 'subB'@'%';
 GRANT SELECT ON siscoin_unit.usuario TO 'subB'@'%';
 
 GRANT SELECT, INSERT ON siscoin_unit.realiza_soli TO 'oficina'@'%';
 GRANT SELECT, INSERT ON siscoin_unit.reporta_fallo TO 'oficina'@'%';
 GRANT SELECT ON siscoin_unit.estado TO 'oficina'@'%';
+GRANT SELECT ON siscoin_unit.equipamiento TO 'oficina'@'%';
+GRANT SELECT ON siscoin_unit.tipo_equipamiento TO 'oficina'@'%';
+GRANT SELECT ON siscoin_unit.oficina TO 'oficina'@'%';
+GRANT SELECT ON siscoin_unit.grupo TO 'oficina'@'%';
 GRANT SELECT ON siscoin_unit.usuario TO 'oficina'@'%';
 
 GRANT SELECT, INSERT, UPDATE ON siscoin_unit.provee TO 'compras'@'%';
@@ -439,12 +550,16 @@ GRANT SELECT, INSERT, UPDATE ON siscoin_unit.marca TO 'compras'@'%';
 GRANT SELECT, UPDATE ON siscoin_unit.tipo_equipamiento TO 'compras'@'%';
 GRANT SELECT, INSERT, UPDATE ON siscoin_unit.equipamiento TO 'compras'@'%';
 GRANT SELECT, INSERT, UPDATE ON siscoin_unit.proveedor TO 'compras'@'%';
+GRANT SELECT, INSERT, UPDATE ON siscoin_unit.equip_estado TO 'compras'@'%';
 GRANT SELECT, UPDATE ON siscoin_unit.realiza_soli TO 'compras'@'%';
 GRANT SELECT ON siscoin_unit.instala_cambia TO 'compras'@'%';
 GRANT SELECT ON siscoin_unit.oficina TO 'compras'@'%';
 GRANT SELECT ON siscoin_unit.usuario TO 'compras'@'%';
 
 GRANT SELECT ON siscoin_unit.provee TO 'auditoria'@'%';
+GRANT SELECT ON siscoin_unit.realiza_soli TO 'auditoria'@'%';
+GRANT SELECT ON siscoin_unit.tipo_equipamiento TO 'auditoria'@'%';
+GRANT SELECT ON siscoin_unit.proveedor TO 'auditoria'@'%';
 GRANT SELECT ON siscoin_unit.equipamiento TO 'auditoria'@'%';
 GRANT SELECT ON siscoin_unit.instala_cambia TO 'auditoria'@'%';
 GRANT SELECT ON siscoin_unit.oficina TO 'auditoria'@'%';
