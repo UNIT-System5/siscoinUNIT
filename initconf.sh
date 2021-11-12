@@ -101,8 +101,12 @@ git clone -b main https://github.com/UNIT-System5/siscoinUNIT.git /root/site
 sed -i 's|DocumentRoot "/srv/http"|DocumentRoot "/srv/http/proyecto-iti"|' /etc/httpd/conf/httpd.conf 
 cp -r /root/site/* /srv/http/
 # Para que se puedan crear y ver las fotos de perfil...
-chown http:http /srv/http/proyecto-iti/profilePics 
-chmod 700 /srv/http/proyecto-iti/profilePics
+chown -R http:http /srv/http 
+chmod -R 700 /srv/http
+
+# Habilitando cockpit...
+
+systemctl enable cockpit.socket
 
 echo "Configuración lista. Procediendo a iniciar servicios..."
 
