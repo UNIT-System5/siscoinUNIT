@@ -790,7 +790,7 @@
             
             UPDATE equipamiento SET
             estado_equip = 'Instalado',
-            lugar_equip = 'Computadora[#'$idEquip']'
+            lugar_equip = 'Computadora[#$idEquip]'
             WHERE id_equip = '$idComp';";
 
             $queryAssC = DBUserConnect::sqlCU($user, $password) -> multi_query($assC);
