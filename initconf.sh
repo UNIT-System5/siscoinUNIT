@@ -106,7 +106,7 @@ chmod -R 700 /srv/http
 
 # Habilitando cockpit...
 
-systemctl enable cockpit.socket
+#systemctl enable cockpit.socket
 
 echo "Configuración lista. Procediendo a iniciar servicios..."
 
