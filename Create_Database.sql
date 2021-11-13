@@ -73,7 +73,7 @@ CREATE TABLE equipamiento (
     desc_equip varchar(40) CHARSET utf8 NOT NULL,
     marca_equip varchar(20) CHARSET utf8 NOT NULL,
     tipo varchar(20) CHARSET utf8 NOT NULL,
-    lugar_equip varchar(20) CHARSET utf8,
+    lugar_equip varchar(60) CHARSET utf8,
     estado_equip varchar(20) CHARSET utf8 NOT NULL,
     fk_estado int(2) NOT NULL,
     fk_tipo int(2) NOT NULL,
@@ -89,8 +89,8 @@ CREATE TABLE equipamiento (
 
 CREATE TABLE asign_comp (
     fecha_asign date NOT NULL,
-    fk_equip int(2) NOT NULL,
     fk_comp int(2) NOT NULL,
+    fk_equip int(2) NOT NULL,
     FOREIGN KEY(fk_equip) REFERENCES equipamiento(id_equip),
     FOREIGN KEY(fk_comp) REFERENCES equipamiento(id_equip)
 ) ENGINE=INNODB;
@@ -337,11 +337,11 @@ INSERT INTO equipamiento (
     lugar_equip, estado_equip, fk_estado, fk_tipo, fk_marca, fk_ofic, fk_prov
 ) VALUES (
     DATE '2020-01-01', 24, 'Teclado', 'Kolke',
-    'Componente', 'Oficina 5', 'Instalado', 4, 21, 3, 5, 1
+    'Componente', 'Computadora [#6]', 'Instalado', 4, 21, 3, NULL, 1
 ),
 (
     DATE '2020-02-02', 12, 'Tarjeta Gráfica', 'NVIDIA',
-    'Componente', 'Oficina 3', 'Instalado', 4, 6, 7, 3, 2
+    'Componente', NULL, 'Instalado', 4, 6, 7, NULL, 2
 ),
 (
     DATE '2020-03-03', 9, 'Memoria RAM', 'ADATA',
@@ -349,20 +349,33 @@ INSERT INTO equipamiento (
 ),
 (
     DATE '2020-04-04', 10, 'Tarjeta de Red', 'Realtek',
-    'Componente', 'Oficina 2', 'Instalado', 4, 5, 20, 2, 3
+    'Componente', 'Computadora [#6]', 'Instalado', 4, 5, 20, NULL, 3
 ),
 (
     DATE '2020-01-01', 12, 'Monitor', 'Samsung',
-    'Componente', 'Oficina 5', 'Instalado', 4, 1, 22, 5, 3
+    'Componente', 'Computadora [#6]', 'Instalado', 4, 1, 22, NULL, 3
+),
+(
+    DATE '2019-04-13', 48, 'Computadora', 'HP',
+    'Equipamiento', 'Oficina 5', 'Instalado', 4, 2, 10, 5, 4
+),
+(
+    DATE '2019-05-22', 40, 'Computadora', 'Apple',
+    'Equipamiento', 'Oficina 5', 'Instalado', 4, 2, 25, 5, 5
 );
 
 INSERT INTO equip_estado (fecha_inic_estado, fecha_fin_estado, fk_estado, fk_equip)
 VALUES (NOW(), NOW(), 2, 1), (NOW(), NULL, 4, 1), (NOW(), NOW(), 2, 2), (NOW(), NULL, 4, 2),
-(NOW(), NULL, 2, 3), (NOW(), NOW(), 2, 4), (NOW(), NULL, 4, 4), (NOW(), NOW(), 2, 5), (NOW(), NULL, 4, 5);
+(NOW(), NULL, 2, 3), (NOW(), NOW(), 2, 4), (NOW(), NULL, 4, 4), (NOW(), NOW(), 2, 5), (NOW(), NULL, 4, 5),
+(NOW(), NULL, 2, 6), (NOW(), NOW(), 4, 6), (NOW(), NULL, 2, 7), (NOW(), NOW(), 4, 7);
+
+INSERT INTO asign_comp (fecha_asign, fk_comp, fk_equip)
+VALUES (NOW(), 1, 6), (NOW(), 4, 6), (NOW(), 5, 6);
+
+
 
 INSERT INTO instala_cambia (tipo_accion, desc_inst_cambio, fecha_inst_cambio, fk_equip, fk_ofic)
-VALUES ('Instalación', 'Description', NOW(), 1, 5), ('Instalación', 'Description', NOW(), 2, 3),
-('Instalación', 'Description', NOW(), 4, 2), ('Instalación', 'Description', NOW(), 5, 5);
+VALUES ('Instalación', 'Description', NOW(), 6, 5), ('Instalación', 'Description', NOW(), 7, 5);
 
 INSERT INTO usuario (
     grupo_user, mail_user, pass_user,
