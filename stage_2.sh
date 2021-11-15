@@ -30,23 +30,22 @@ echo "
 
 systemctl enable cronie
 
-dd if=/dev/zero of=/swapfile bs=1M count=1024 
+#dd if=/dev/zero of=/swapfile bs=1M count=1024 
 
-chmod 600 /swapfile 
+#chmod 600 /swapfile 
 
-mkswap /swapfile 
+#mkswap /swapfile 
 
-echo "
-
-/swapfile none swap defaults 0 0
-
-" >> /etc/fstab
+#echo "
+#/swapfile none swap defaults 0 0
+#" >> /etc/fstab
 
 echo "
 [zram0]
 compression-algorithm = zstd
 swap-priority = 32767
-zram-fraction= 0.5
+zram-fraction = 1
+max-zram-size = 8192
 " > /etc/systemd/zram-generator.conf
 
 grub-install --target=i386-pc /dev/sda
