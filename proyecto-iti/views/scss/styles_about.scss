@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+@import 'header';
+
+.container1 {
+    height: 120vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 10% 10% 1fr 40%;
+    background-color: #f0f0f0;
+    color: #110f30;
+    position: relative;
+
+    h1 {
+        width: 100%;
+        height: 100%;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 900;
+        font-size: 2em;
+        display: flex;
+        align-items: flex-end;
+        padding-left: 2rem;
+    }
+
+    .subContainer1 {
+        width: 100%;
+        height: 100%;
+        font-family: 'Open Sans', sans-serif;
+        padding-left: 2rem;
+        padding-top: 1.5em;
+        z-index: 5;
+    }
+
+    .subContainer2 {
+        position: relative;
+        background-color: #3a3580;
+        padding-top: 12em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 4em;
+
+        .cardTitle {
+            width: 100%;
+            height: 10%;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+
+            h3 {
+                font-family: 'Open Sans', sans-serif;
+                font-size: 4em;
+                font-weight: 900;
+                color: #f0f0f0;
+            }
+        }
+
+        .custom-shape-divider-top-1636982993 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+            z-index: 1;
+    
+            svg {
+                position: relative;
+                display: block;
+                width: calc(100% + 1.3px);
+                height: 107px;
+                transform: rotateY(180deg);
+            }
+    
+            .shape-fill {
+                fill: #f0f0f0;
+            }
+        }
+    }
+
+    .subContainer3 {
+        background-color: #161226;
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        .custom-shape-divider-top-1636992829 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+
+            svg {
+                position: relative;
+                display: block;
+                width: calc(156% + 1.3px);
+                height: 86px;
+            }
+
+            .shape-fill {
+                fill: #3a3580;
+            }
+        }
+
+        .unitLogo {
+            width: 14em;
+            height: 8em;
+            position: absolute;
+            bottom: 2em;
+            right: 2em;
+
+            img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    .cardContainer {
+        width: 100%;
+        height: 90%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+        grid-auto-rows: 25em;
+        gap: 2em;
+
+        .card {
+            width: 70%;
+            height: 100%;
+            z-index: 5;
+            background-color: #110f30;
+            justify-self: center;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 50% 1fr;
+            border-radius: 15px;
+            color: #f0f0f0;
+            font-family: 'Open Sans', sans-serif;
+            padding-top: 6em;
+            position: relative;
+            overflow: hidden;
+
+            .custom-shape-divider-top-1636988437 {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                overflow: hidden;
+                line-height: 0;
+                z-index: -1;
+        
+                svg {
+                    position: relative;
+                    display: block;
+                    width: calc(170% + 1.3px);
+                    height: 100px;
+                    transform: translateX(-10%);
+                }
+        
+                .shape-fill {
+                    fill: #f0f0f0;
+                }
+            }
+
+            .headerCard {
+                width: 100%;
+                height: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                align-self: flex-start;
+
+                .pic {
+                    width: 9em;
+                    height: 9em;
+                    border-radius: 50%;
+                    overflow: hidden;
+
+                    img {
+                        object-fit: cover;
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+
+            h4 {
+                text-align: center;
+                font-size: 1.8em;
+            }
+        }
+    }
+}
