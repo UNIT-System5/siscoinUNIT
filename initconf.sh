@@ -120,5 +120,6 @@ systemctl enable --now mariadb
 systemctl enable --now sshd
 systemctl enable --now php-fpm 
 systemctl enable --now httpd
+systemctl enable cockpit
 
 reboot
