@@ -12,7 +12,7 @@ mkfs.ext4 /dev/sda1
 
 mount /dev/sda1 /mnt
 
-pacstrap /mnt base neovim nano apache networkmanager mariadb php fish htop linux-lts linux-firmware man-db expect cronie grub phpmyadmin git sed openssh rsync intel-ucode amd-ucode sudo virtualbox-guest-utils-nox zram-generator neofetch firewalld packagekit udisks2 cockpit
+pacstrap /mnt base neovim nano apache networkmanager mariadb php fish htop linux-lts linux-firmware man-db expect cronie grub phpmyadmin git sed openssh rsync intel-ucode amd-ucode sudo virtualbox-guest-utils-nox zram-generator neofetch ufw 
 
 genfstab -U /mnt >> /mnt/etc/fstab
 

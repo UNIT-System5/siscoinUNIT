@@ -62,9 +62,9 @@ echo "Preparando phpMyAdmin..."
 /bin/bash /root/phpmyadmin.sh
 
 # Habilitando el firewall...
-#/bin/bash /root/ufwconf.sh
+/bin/bash /root/ufwconf.sh
 
-/bin/bash firewalld.sh
+#/bin/bash firewalld.sh
 
 # Configurando red...
 /bin/bash /root/networkconf.sh
@@ -120,6 +120,5 @@ systemctl enable --now mariadb
 systemctl enable --now sshd
 systemctl enable --now php-fpm 
 systemctl enable --now httpd
-systemctl enable cockpit
 
 reboot
