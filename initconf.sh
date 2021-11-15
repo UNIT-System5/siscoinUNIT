@@ -62,7 +62,9 @@ echo "Preparando phpMyAdmin..."
 /bin/bash /root/phpmyadmin.sh
 
 # Habilitando el firewall...
-/bin/bash /root/ufwconf.sh
+#/bin/bash /root/ufwconf.sh
+
+/bin/bash firewalld.sh
 
 # Configurando red...
 /bin/bash /root/networkconf.sh
